@@ -1,0 +1,119 @@
+<div ng-controller="Reviewsctrl">
+    <div class="row top80 centered">
+        <tabset justified="true">
+            <!-- TAB -->
+            </tab>
+            <!-- TAB -->
+            <tab heading="CREATE NEW MENU" >
+                <div class="col-lg-10 col-lg-offset-1 top30">
+                    <div class="{{main4}}">
+                        <div class="{{header}}">
+                            <div>
+                                <a href = "/"> ALL REVIEWS ({{total_reviews}}) / TOP REVIEWS ({{top_reviews}}) / MOST RECENT ({{most_recent}}) </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-10 col-lg-offset-1 top5">
+                    <div class="{{main3}}">
+                        <div class="row">
+                            <p class = "menu-textbox1">
+                                <b> SORT BY </b>
+                                <a class= "dd-text"> TIME </a>
+                                <select class="menu-dropdown1">
+                                    <option value="">SELECT CATEGORY</option>
+                                    <option value="Austin">APPETIZERS</option>
+                                    <option value="San Fransisco">ENTREES</option>
+                                    <option value="Pittsburgh">DESSERTS</option>
+                                    <option value="Pittsburgh">NONE</option>
+                                    <option value="Pittsburgh">CREATE MY OWN</option>
+                                </select>
+                                <a class= "dd-text"> LOCATION </a>
+                                <select class="menu-dropdown2">
+                                    <option value="">SELECT CATEGORY</option>
+                                    <option value="Austin">APPETIZERS</option>
+                                    <option value="San Fransisco">ENTREES</option>
+                                    <option value="Pittsburgh">DESSERTS</option>
+                                    <option value="Pittsburgh">NONE</option>
+                                    <option value="Pittsburgh">CREATE MY OWN</option>
+                                </select>
+                                <a class= "dd-text"> RATING </a>
+                                <select class="menu-dropdown3">
+                                    <option value="">0</option>
+                                    <option value="Austin">1</option>
+                                    <option value="San Fransisco">2</option>
+                                    <option value="Pittsburgh">3</option>
+                                    <option value="Pittsburgh">4</option>
+                                    <option value="Pittsburgh">5</option>
+                                </select>
+                                <input type="text" class="form-controlr" placeholder="SEARCH" autofocus>
+                            </p>
+                            <div class="innerbox-bot">
+                                <div class="innerbox-inner" ng-repeat = "review in reviews">
+                                    <div class = "review-profile">
+                                        <p><a href="profile.html"><img src="img/carlos.png" class="img-circle" width="50"></a> {{review.user.user.username}}</p>
+                                    </div>
+                                    <div class = "innertext-heading"> DATE
+                                        <a class = "innertext-heading-date"> {{review.date_posted  | date: 'shortDate'}} </a> </div>
+                                    <br>
+                                    <div class = "innertext-heading2"> RATINGS
+                                        <!--<div class = "innertext-heading-date"> &#9733; &#9733; &#9733; &#9734; &#9734; </div> -->
+                                        <rating class = "innertext-heading-date1" ng-model="review.score" max="max" readonly="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null"></rating>
+                                    </div>
+                                    <br>
+                                    <div class = "innertext-heading1"> COMMENTS </div>
+                                    <div class= "inner-text"> {{review.comment}} </div>
+
+                                    <div class="showback">
+                                        <div>
+                                            <div class = "text1"> portion size </div>
+                                            <div class="rating-bar">
+                                                <div class="progress-bar progress-bar-success" role="progressbar" style="{{portion1}}">
+
+                                                </div>
+                                            </div>
+                                            <a class = "not-enough"> not enough </a>
+                                            <a class = "too-much"> too much </a>
+                                        </div>
+
+                                        <div class = "text1"> Spiciness </div>
+                                        <div class="rating-bar">
+                                            <div class="progress-bar progress-bar-info" role="progressbar" style="{{spice1}}">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <a class = "not-enough"> mild </a>
+                                            <a class = "too-much"> on fire </a>
+                                        </div>
+
+                                        <div class = "text1"> Saltiness </div>
+                                        <div class="rating-bar">
+                                            <div class="progress-bar progress-bar-warning" role="progressbar" style="{{salt1}}">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <a class = "not-enough"> not salty </a>
+                                            <a class = "too-much"> very salty </a>
+                                        </div>
+                                    </div>
+                                    <div class = "message-buttons">
+                                        <button class = "send-btn"> SEND MESSAGE</button>
+                                        <button class = "done-btn" ng-click = "popup1()"> COMMENT </button>
+                                        <a class = "cool"> SHARE REVIEW </a>
+                                        <button class="fa fa-twitter"></button>
+                                        <button class="fa fa-facebook"></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button class = "add-menu-btn" ng-click = "popup1()"> COMPLETE MENU </button>
+                        </div>
+                    </div>
+                </div>
+    </div>
+    </tab>
+
+    </tabset>
+</div>
+
+</div>
