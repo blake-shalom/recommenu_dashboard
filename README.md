@@ -1,6 +1,7 @@
 # How do I set up #
 
 Make sure you have the following components installed
+
 * Node
 * Bower
 * Grunt
@@ -12,7 +13,3 @@ Make sure you have the following components installed
 3. bower install
 
 run the application with "grunt serve" on the command line. The project has been fixed an no longer requires a "force" parameter
-
-
-
-
