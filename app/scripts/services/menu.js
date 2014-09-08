@@ -25,16 +25,6 @@ angular.module('recommenuClientDashApp')
             menuList: function(){
                 console.log('api/v1/menus/?company=' + $window.sessionStorage.company_id);
                 return Restangular.one('api/v1/menus/?company=' + $window.sessionStorage.company_id).getList();
-                /*.then(
-                 function(data){
-                 console.log('here first');
-                 console.log(data[0].name);
-                 return data[0].name; // returning a list of object results
-                 },
-                 function(res){
-                 console.log('failed menu list get', res.status);
-                 }*/
-                //);
             },
             review: function(){
                 return Restangular.all('/api/v1/recommendations/?entry__section__menu__company=' + $window.sessionStorage.company_id).getList();

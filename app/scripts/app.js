@@ -49,9 +49,9 @@ angular.module('recommenuClientDashApp', [
             controller: 'Reviewsctrl'
         })
         .state('dashboard.analytics', {
-            url: '/reviews',
+            url: '/analytics',
             templateUrl: 'templates/analytics.html',
-            controller: 'Analyticsctrl'
+            controller: 'AnalysisCtrl'
         });
 
     $urlRouterProvider.otherwise('/dashboard');
