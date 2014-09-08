@@ -49,51 +49,55 @@
                                 <input type="text" class="form-controlr" placeholder="SEARCH" autofocus>
                             </p>
                             <div class="innerbox-bot">
-                                <div class="innerbox-inner" ng-repeat = "review in reviews">
+                                <div class="innerbox-inner">
                                     <div class = "review-profile">
-                                        <p><a href="profile.html"><img src="img/carlos.png" class="img-circle" width="50"></a> {{review.user.user.username}}</p>
+                                        <p><a href="profile.html"><img src="img/carlos.png" class="img-circle" width="50"></a> {{username}}</p>
                                     </div>
-                                    <div class = "innertext-heading"> DATE
-                                        <a class = "innertext-heading-date"> {{review.date_posted  | date: 'shortDate'}} </a> </div>
+                                    <div class = "col-lg-10 col-lg-offset-1 innertext"> 
+                                    <div class = "innertext-heading"> DATE </div>
+                                         <!-- <a class = "innertext-heading-date"> {{review.date_posted  | date: 'shortDate'}} </a> </div> -->
+                                         <div class = "innertext-heading-date"> {{date_posted}} </div> 
+                                     </div>
                                     <br>
-                                    <div class = "innertext-heading2"> RATINGS
-                                        <!--<div class = "innertext-heading-date"> &#9733; &#9733; &#9733; &#9734; &#9734; </div> -->
-                                        <rating class = "innertext-heading-date1" ng-model="review.score" max="max" readonly="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null"></rating>
+                                    <div class = "col-lg-10 col-lg-offset-1 innertext2">
+                                    <div class = "innertext-heading2"> RATINGS </div>
+                                        <div class = "innertext-heading-date1"> &#9733; &#9733; &#9733; &#9734; &#9734; </div> 
+                                        <rating class = "innertext-heading-date1" ng-model="score" max="max" readonly="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null"></rating>
                                     </div>
                                     <br>
-                                    <div class = "innertext-heading1"> COMMENTS </div>
-                                    <div class= "inner-text"> {{review.comment}} </div>
+                                    <div class = "col-lg-12 col-lg-offset-2 innertext-heading1"> COMMENTS </div>
+                                    <div class= "inner-text"> {{comment}} </div>
 
                                     <div class="showback">
-                                        <div>
                                             <div class = "text1"> portion size </div>
-                                            <div class="rating-bar">
-                                                <div class="progress-bar progress-bar-success" role="progressbar" style="{{portion1}}">
+                                            <div class="rating-bar1">
+                                                <div class="progress-bar1 progress-bar-special" role="progressbar" style="{{portion1}}">
 
                                                 </div>
                                             </div>
+                                            <div>
                                             <a class = "not-enough"> not enough </a>
                                             <a class = "too-much"> too much </a>
                                         </div>
 
                                         <div class = "text1"> Spiciness </div>
-                                        <div class="rating-bar">
-                                            <div class="progress-bar progress-bar-info" role="progressbar" style="{{spice1}}">
+                                        <div class="rating-bar1">
+                                            <div class="progress-bar1 progress-bar-special" role="progressbar" style="{{spice1}}">
                                             </div>
                                         </div>
                                         <div>
-                                            <a class = "not-enough"> mild </a>
-                                            <a class = "too-much"> on fire </a>
+                                            <a class = "not-spice"> mild </a>
+                                            <a class = "too-spice"> on fire </a>
                                         </div>
 
                                         <div class = "text1"> Saltiness </div>
-                                        <div class="rating-bar">
-                                            <div class="progress-bar progress-bar-warning" role="progressbar" style="{{salt1}}">
+                                        <div class="rating-bar1">
+                                            <div class="progress-bar1 progress-bar-special" role="progressbar" style="{{salt1}}">
                                             </div>
                                         </div>
                                         <div>
-                                            <a class = "not-enough"> not salty </a>
-                                            <a class = "too-much"> very salty </a>
+                                            <a class = "not-salt"> not salty </a>
+                                            <a class = "too-salt"> very salty </a>
                                         </div>
                                     </div>
                                     <div class = "message-buttons">

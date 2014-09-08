@@ -10,6 +10,16 @@
 angular.module('recommenuClientDashApp')
   .controller('Reviewsctrl', function ($scope, $state, $compile, Menuservice, Restangular, Dashboardservice, $window) {
         // get a list of menus for the logged in user
+        $scope.portion1 = "width: 50%";
+        $scope.spice1 = "width: 50%";        
+        $scope.salt1 = "width: 50%";
+        $scope.comment = "I like this food.  Really long text about food. Really long text about food. Really long text about food. Really long text about food. Really long text about food. Really long text about food. Really long text about food. Really long text about food. Really long text about food.";
+        $scope.username = "Jake";
+        $scope.date_posted = "07/06/2014"
+        $scope.score = "3";
+
+
+
         Menuservice.menuList().then(
             function(data){
                 console.log(data[0].name);
@@ -20,14 +30,16 @@ angular.module('recommenuClientDashApp')
                 console.log("failed menu-list get", res.status);
             }
         );
-
+/*
         Menuservice.review().then(
             function(users){
                 $scope.reviews = users;
                 $scope.total_reviews = users.metadata.total_count;
+               
                 $scope.portion1 = "width: " + users[2].sliders[0].score + "0%";
                 $scope.spice1 = "width: " + users[2].sliders[1].score + "0%";
                 $scope.salt1 = "width: " + users[2].sliders[2].score + "0%";
+              
                 console.log('here');
                 console.log($window.sessionStorage.company_id);
                 console.log(users[4].sliders[0].score);
@@ -36,6 +48,7 @@ angular.module('recommenuClientDashApp')
             function(res){
                 console.log("Could not retrieve reviews", res.status);
             });
+*/
 
 
         $scope.newMenu = function() {
