@@ -49,14 +49,14 @@
                                 <input type="text" class="form-controlr" placeholder="SEARCH" autofocus>
                             </p>
                             <div class="innerbox-bot">
-                                <div class="innerbox-inner">
+                                <div class="innerbox-inner" ng-repeat = "review in reviews">
                                     <div class = "review-profile">
-                                        <p><a href="profile.html"><img src="img/carlos.png" class="img-circle" width="50"></a> {{username}}</p>
+                                        <p><a href="profile.html"><img src="img/carlos.png" class="img-circle" width="50"></a> {{review.nickname}}</p>
                                     </div>
                                     <div class = "col-lg-10 col-lg-offset-1 innertext"> 
                                     <div class = "innertext-heading"> DATE </div>
-                                         <!-- <a class = "innertext-heading-date"> {{review.date_posted  | date: 'shortDate'}} </a> </div> -->
-                                         <div class = "innertext-heading-date"> {{date_posted}} </div> 
+                                         <div class = "innertext-heading-date"> {{review.date_posted  | date: 'shortDate'}} </div> 
+                                         <!-- <div class = "innertext-heading-date"> {{date_posted}} </div>  -->
                                      </div>
                                     <br>
                                     <div class = "col-lg-10 col-lg-offset-1 innertext2">
@@ -66,7 +66,7 @@
                                     </div>
                                     <br>
                                     <div class = "col-lg-12 col-lg-offset-2 innertext-heading1"> COMMENTS </div>
-                                    <div class= "inner-text"> {{comment}} </div>
+                                    <div class= "inner-text"> {{review.entry.description}} </div>
 
                                     <div class="showback">
                                             <div class = "text1"> portion size </div>

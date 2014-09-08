@@ -11,6 +11,7 @@
 angular.module('recommenuClientDashApp', [
     'ui.router',
     'restangular'
+    //'ui.bootstrap'
     //'recommenu.services',
     //'recommenu.controllers',
     //'recommenu.directives'
