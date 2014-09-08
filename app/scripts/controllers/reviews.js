@@ -13,9 +13,9 @@ angular.module('recommenuClientDashApp')
         $scope.portion1 = "width: 50%";
         $scope.spice1 = "width: 50%";        
         $scope.salt1 = "width: 50%";
-        $scope.comment = "I like this food";
+        $scope.comment = "I like this food.  Really long text about food. Really long text about food. Really long text about food. Really long text about food. Really long text about food. Really long text about food. Really long text about food. Really long text about food. Really long text about food.";
         $scope.username = "Jake";
-        $scope.date_posted = "This is a placeholder for the date"
+        $scope.date_posted = "07/06/2014"
         $scope.score = "3";
 
 

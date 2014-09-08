@@ -4417,7 +4417,11 @@ Create New Menu
 }
 
 .innertext {
-    margin-left: -17%;
+    margin-left: -4.6%;
+}
+
+.innertext2 {
+    margin-left: 0%;
 }
 
 .innertext-heading {
@@ -4429,7 +4433,7 @@ Create New Menu
 }
 
 .innertext-heading1 {
-    margin-left: 25%;
+    margin-left: 22.7%;
     text-align: left;
     font-weight: bold;
 
