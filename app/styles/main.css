@@ -4286,6 +4286,26 @@ Create New Menu
     background-color: #787878;
     border-color: #787878;
 }
+
+.cmt-btn {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #fff;
+    background-color: #787878;
+    border-color: #787878;
+    width: 150px;
+    margin-left: 40%;
+}
+
+.cmt-btn:hover,
+.cmt-btn:focus,
+.cmt-btn:active,
+.cmt-btn.active,
+.open .dropdown-toggle.send-btn {
+    color: #fff;
+    background-color: #787878;
+    border-color: #787878;
+}
 /* Reviews ***********************    Reviews ************* */
 
 .menu-dropdown1 {
@@ -4380,6 +4400,7 @@ Create New Menu
     margin-top: 10px;
     width: 90%;
     height: 50px;
+    margin-left: 5%;
 }
 
 .review-profile {
@@ -4398,15 +4419,24 @@ Create New Menu
     width: 70%;
 }
 
+.innertext {
+    margin-left: -4.6%;
+}
+
+.innertext2 {
+    margin-left: 0%;
+}
+
 .innertext-heading {
-    /* margin-left: 20%; */
-    margin-right: 29%;
+    /* margin-left: 20%; 
+    margin-right: 29%; */
     text-align: center;
     font-weight: bold;
+    display:inline-block;
 }
 
 .innertext-heading1 {
-    margin-left: 25%;
+    margin-left: 22.7%;
     text-align: left;
     font-weight: bold;
 
@@ -4417,12 +4447,14 @@ Create New Menu
     text-align: right;
     font-weight: bold;
     color: red;
+    display:inline-block;
 }
 
 .innertext-heading2 {
     margin-right: 1%;
     text-align: center;
     font-weight: bold;
+    display:inline-block;
 }
 
 .innertext-heading-date1 {
@@ -4430,6 +4462,7 @@ Create New Menu
     text-align: right;
     font-weight: bold;
     color: red;
+    display:inline-block;
 }
 
 .rating-bar {
@@ -4446,20 +4479,31 @@ Create New Menu
 
 .not-enough {
     text-align: left;
-    margin-right: 33%;
+    margin-left: 15px;
 }
 
 .too-much {
-    margin-left: 0%;
+    margin-left: 95px;
 }
 
-.text1 {
+.not-spice {
     text-align: left;
-    margin-left: 25%;
-    margin-top: 20px;
-
-
+    margin-left: 15px;
 }
+
+.too-spice {
+    margin-left: 160px;
+}
+
+.not-salt {
+    text-align: left;
+    margin-left: 15px;
+}
+
+.too-salt {
+    margin-left: 115px;
+}
+
 
 .cool {
     margin-left: 15%;
@@ -4534,3 +4578,48 @@ Create New Menu
 .close-btn2:hover {
     background: #05abe0;
 }
+
+.progress-bar-special {
+  background-color: #EC1616;
+}
+
+.progress-bar1 {
+float: left;
+width: 0;
+height: 100%;
+font-size: 12px;
+line-height: 20px;
+color: #fff;
+text-align: center;
+background-color: #EC1616;
+-webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
+box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
+-webkit-transition: width .6s ease;
+transition: width .6s ease;
+display:inline-block;
+}
+
+.rating-bar1 {
+margin-left: 1%;
+height: 15px;
+width: 30%;
+margin-bottom: -3px;
+overflow: hidden;
+background-color: #f5f5f5;
+border-radius: 4px;
+box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
+display:inline-block;
+}
+
+.text1 {
+    text-align: left;
+    margin-left: -10%;
+    margin-top: -20px;
+    display:inline-block;
+    width: 10%;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+
+
