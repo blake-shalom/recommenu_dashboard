@@ -12,20 +12,24 @@ angular.module('recommenuClientDashApp')
                                     Userservice, Authenticationservice, $location) {
         $scope.profileInfo = {};
         $scope.content1 = 'Thank you for registering to the Recommenu Dashboard! Please Check your ' +
-                          'email for a confirmation request with a link that will confirm your account. Once you ' +
+                          'emaifl for a confirmation request with a link that will confirm your account. Once you ' +
                           'click the link, your registration will be complete!';
         $scope.content2 = 'If for some reason you don not recieve the email within 24 hours, contact us via ' +
                           'recommenu@gmail.com and we"ll do our best to get you back on track.';
         $scope.signIn = function(username, password) {
             // Check for missing credentials
+            $scope.loginStatus = "Attempting to login...";
             console.log('Signing in as: ', username, password);
             if (username !== undefined && password !== undefined) {
                 Userservice.logIn(username, password).then(
                     function(data){
                         console.log('successful login');
+                        $scope.loginStatus = "You have successfully logged in!";
+                        $scope.loginSuccess = "Log Out";
                         Authenticationservice.isLogged = true;
                         $window.sessionStorage.token = data.apiKey;
                         $window.sessionStorage.id = data.id;
+                        console.log("data.id: ",data.id);
                         Restangular.setDefaultRequestParams({apiKey: $window.sessionStorage.token });
                         $location.path('/');  // default location after sign-in
                         Userservice.getInfo().then(
@@ -49,11 +53,23 @@ angular.module('recommenuClientDashApp')
                             function(res){
                                 console.log('failed profile get', res.status);
                             });
+//                            $state.go('dashboard.Reviews');
+
                     },
                     function(res){
                         console.log('failed login', res.status);
+                        $scope.loginStatus = "Login Failed.";
+
                     }
                 );
             }
+            else{
+                $scope.loginStatus = "Please enter login information.";
+            }
         };
+
+        $scope.register = function(){
+            console.log("registser");
+            $scope.registerStatus = "Sorry, Registration is closed.";
+        }
     });

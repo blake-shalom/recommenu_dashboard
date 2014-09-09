@@ -20,7 +20,7 @@ angular.module('recommenuClientDashApp')
                 console.log('Could not reach company detail endpoint');
             }
         );
-        console.log('COMPANY ID' + $window.sessionStorage.company_id);
+        console.log('COMPANY ID: ' + $window.sessionStorage.company_id);
         return {
             menuList: function(){
                 console.log('api/v1/menus/?company=' + $window.sessionStorage.company_id);

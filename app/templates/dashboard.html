@@ -13,6 +13,9 @@
                 <li class="top-menu-middle">
                     <a href="#/dashboard">HELP/SUPPORT</a>
                 </li>
+                <li class="">
+                    <a href="#/dashboard">{{loginSuccess}}</a>
+                </li>
                 <li class = "nav top-menu-left">
                     <a>RECOMMENU DASHBOARD</a>
                 </li>
@@ -103,6 +106,9 @@
                 <label class="login">
                     <button class="btn btn-theme-login" type="submit" ng-click="signIn(username, password)"> LOG IN</button>
                 </label>
+                <div class="loginstatus">
+                    <p class="text-center">{{ loginStatus }}</p>
+                </div>
                 <div class="registration">
                     <a class="registration" href="#">
                         FORGOT PASSWORD
@@ -145,6 +151,9 @@
                 <label class="login">
                     <a class="btn btn-theme-register" type="submit" ng-click="register(first_name, last_name, email, username1, password1)"> REGISTER</a>
                 </label>
+                <div class="loginstatus">
+                    <p class="text-center">{{ registerStatus }}</p>
+                </div>
                 <div class="registration">
                     <a class="registration" href="#">
                         MEMBER LOG IN

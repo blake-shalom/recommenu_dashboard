@@ -2186,6 +2186,9 @@ ul li {
     text-align: center;
 }
 
+.loginstatus{padding:0;}
+.loginstatus p{padding: 0;margin:0;}
+
 .login-social-link {
     display: block;
     margin-top: 20px;
@@ -3764,7 +3767,7 @@ tab {
 }
 
 .member-login .form-panel .registration {
-    margin-top: 10%;
+    margin-top: 5%;
     margin-bottom: 10%;
     text-align: center;
     font-weight: bold;
@@ -3861,7 +3864,7 @@ tab {
     color: black;
     width: 300px;
     margin-left: 16%;
-    height: 650px;
+    height: 690px;
 }
 
 .register .form-panel .input-group {
@@ -3881,8 +3884,8 @@ tab {
 }
 
 .register .form-panel .registration {
-    margin-top: 10%;
-    margin-bottom: 10%;
+    margin-top: 5%;
+    margin-bottom: 15%;
     text-align: center;
     font-weight: bold;
     color: #FF3300;
