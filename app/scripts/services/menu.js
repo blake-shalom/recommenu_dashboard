@@ -27,7 +27,8 @@ angular.module('recommenuClientDashApp')
                 return Restangular.one('api/v1/menus/?company=' + $window.sessionStorage.company_id).getList();
             },
             review: function(){
-                return Restangular.all('/api/v1/recommendations/?entry__section__menu__company=' + $window.sessionStorage.company_id).getList();
+                return Restangular.all('/api/v1/recommendations/?format=json').getList();
+                //return Restangular.all('/api/v1/recommendations/?entry__section__menu__company=' + $window.sessionStorage.company_id).getList();
             },
             userloc: function(user_location){
                 return Restangular.all(user_location).get();
