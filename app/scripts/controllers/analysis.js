@@ -102,6 +102,11 @@ angular.module('recommenuClientDashApp')
 
 
         };
+
+        $scope.donutOptions = {
+            percentageInnerCutout : 70
+
+        }
   });
 
 
