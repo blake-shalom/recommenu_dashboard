@@ -1,0 +1,41 @@
+<div>
+    <div class=" top110 bot15 grey-panel right80 left30">
+        <div class="panel-body">
+         <br/><br/>
+            <div class="col-lg-10 col-lg-offset-1 bot15">
+              <div ng-repeat="menu in menuList">
+                  <div ng-repeat="section in menu.sections">
+                      <h4 class="text-left">{{section.name}}</h4><hr/>
+                <div ng-repeat="entry in section.entries" class="content-panel right-60 left-60 bot15" >
+                    <div class="panel-body">
+                        <div class="col-lg-4">
+                            <h4>{{entry.name}}</h4>
+                            <canvas doughnutchart options="donutOptions" data="entry.donut" width="250" height="250"></canvas>
+                        </div>
+                        <div class="col-lg-4">
+                            <h5>Direct Marketing Views By Date</h5>
+                            <canvas linechart options="options" data="entry.chart" width="300" height="250"></canvas>
+                        </div>
+                        <div class="col-lg-4">
+                        <div><h4>{{entry.star_average}}</h4></div>
+                        <h5>Average Star Ratings</h5>
+                        <div class="showback">
+
+                            <div class="progress" ng-repeat="slider_template in entry.slider_templates">
+                                <div class="progress-bar progress-bar-danger" role="progressbar"
+                                     aria-valuenow="" aria-valuemin="0"
+                                     aria-valuemax="100" style="width: {{slider_template.average_score}}%">
+                                     {{slider_template.category}}
+                                </div>
+                            </div>
+                            <h5>Average Slider Ratings</h5>
+                        </div><!--/showback -->
+                        </div>
+                    </div>
+                </div>
+                      </div>
+              </div>
+            </div>
+    </div>
+    </div>
+</div>

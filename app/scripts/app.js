@@ -10,8 +10,8 @@
  */
 angular.module('recommenuClientDashApp', [
     'ui.router',
-    'restangular'
-    //'ui.bootstrap'
+    'restangular',
+    'angles'
     //'recommenu.services',
     //'recommenu.controllers',
     //'recommenu.directives'
@@ -51,9 +51,9 @@ angular.module('recommenuClientDashApp', [
             controller: 'Reviewsctrl'
         })
         .state('dashboard.analytics', {
-            url: '/reviews',
+            url: '/analytics',
             templateUrl: 'templates/analytics.html',
-            controller: 'Analyticsctrl'
+            controller: 'AnalysisCtrl'
         });
 
     $urlRouterProvider.otherwise('/dashboard');

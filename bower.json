@@ -11,7 +11,10 @@
     "jquery": "~2.1.1",
     "angular-ui-bootstrap": "~0.11.0",
     "ui-bootstrap": "~0.11.0",
-    "lodash": "~2.4.1"
+    "ngRaty": "*",
+    "raty": "~2.7.0",
+    "fontawesome": "~4.2.0",
+    "angles": "*"
   },
   "devDependencies": {
     "angular-mocks": "1.2.16",
