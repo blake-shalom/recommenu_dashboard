@@ -8,114 +8,102 @@
  * Controller of the recommenuClientDashApp
  */
 angular.module('recommenuClientDashApp')
+
   .controller('AnalysisCtrl', function ($scope, Menuservice) {
-        Menuservice.review().then(
-            function(data){
-                console.log("retrived recommendations");
-                $scope.recommendations = data;
-                $scope.recommendations_meta = data.metadata;
-            },
-            function(res){
-                console.log("failed recommendations get", res.status);
-            }
-        );
+        $scope.donuts_data = {};
         Menuservice.menuList().then(
             function(data){
                 console.log("menu List");
                 $scope.menuList = data;
                 $scope.menuList_meta = data.metadata;
+                console.log(data[0].sections[0].name);
+                for (var section in data[0].sections){
+                    for (var entry in data[0].sections[section].entries){
+                        $scope.menuList[0].sections[section].entries[entry]['donut'] = [
+                            {
+                                value: $scope.menuList[0].sections[section].entries[entry]['five_agg'],
+                                color:"#F7464A",
+                                highlight: "#FF5A5E",
+                                label: "Five Star"
+                            },
+                            {
+                                value: $scope.menuList[0].sections[section].entries[entry]['four_agg'],
+                                color: "#46BFBD",
+                                highlight: "#5AD3D1",
+                                label: "Four Star"
+                            },
+                            {
+                                value: $scope.menuList[0].sections[section].entries[entry]['three_agg'],
+                                color: "#FDB45C",
+                                highlight: "#FFC870",
+                                label: "Three Star"
+                            },
+                            {
+                                value: $scope.menuList[0].sections[section].entries[entry]['two_agg'],
+                                color: "#949FB1",
+                                highlight: "#A8B3C5",
+                                label: "Two Star"
+                            },
+                            {
+                                value: $scope.menuList[0].sections[section].entries[entry]['one_agg'],
+                                color: "#4D5360",
+                                highlight: "#616774",
+                                label: "One Star"
+                            }
+                        ]
+
+                        $scope.menuList[0].sections[section].entries[entry]['chart'] = {
+                            labels: ["Day 1", "Day 5", "Day 10", "Day 15", "Day 20", "Day 25", "Day 30"],
+                            datasets: [
+                                {
+                                    label: "Views",
+                                    fillColor: "rgba(151,187,205,0.2)",
+                                    strokeColor: "rgba(151,187,205,1)",
+                                    pointColor: "rgba(151,187,205,1)",
+                                    pointStrokeColor: "#fff",
+                                    pointHighlightFill: "#fff",
+                                    pointHighlightStroke: "rgba(151,187,205,1)",
+                                    data: [getRandomInt(25, 75), getRandomInt(25, 75), getRandomInt(25, 75), getRandomInt(25, 75),
+                                        getRandomInt(25, 75), getRandomInt(25, 75), getRandomInt(25, 75)]
+                                }
+                            ]
+
+
+                        }
+                    }
+
+                }
+
             },
             function(res){
                 console.log("failed menulist get", res.status);
             }
         );
-        $scope.demo = this;
-        $scope.rating = {
-            current: 0,
-            over: 0,
-            out: 0
-        };
-        $scope.ratyOptions = {
-            half: true,
-            cancel: true,
-            cancelOn: 'https://raw.github.com/wbotelhos/raty/master/lib/img/cancel-off.png',
-            cancelOff: 'https://raw.github.com/wbotelhos/raty/master/lib/img/cancel-on.png',
-            starHalf: 'https://raw.github.com/wbotelhos/raty/master/lib/img/star-half.png',
-            starOff: 'https://raw.github.com/wbotelhos/raty/master/lib/img/star-off.png',
-            starOn: 'https://raw.github.com/wbotelhos/raty/master/lib/img/star-on.png'
-        };
 
-        this.mouseOver = function (stars, e) {
-            $scope.rating.over = stars || 0;
-        };
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
 
-        this.mouseOut = function (stars, e) {
-            $scope.rating.out = stars || 0;
-        };
+        $scope.chart = {
+            labels: ["Day 1", "Day 5", "Day 10", "Day 15", "Day 20", "Day 25", "Day 30"],
+            datasets: [
+                {
+                    label: "Views",
+                    fillColor: "rgba(151,187,205,0.2)",
+                    strokeColor: "rgba(151,187,205,1)",
+                    pointColor: "rgba(151,187,205,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(151,187,205,1)",
+                    data: [getRandomInt(25, 75), getRandomInt(25, 75), getRandomInt(25, 75), getRandomInt(25, 75),
+                           getRandomInt(25, 75), getRandomInt(25, 75), getRandomInt(25, 75)]
+                }
+            ]
 
-        this.setRating = function (value) {
-            if (typeof value != 'number') return;
 
-            // Remove negatives, round to nearest .5;
-            value = (Math.round(Math.abs(parseFloat(value) || 0) * 2) / 2).toFixed(1)
-            $scope.rating.current = value > 5 ? 5 : value;
         };
   });
-angular.module('phoffman.ngRaty', [])
-    .directive('ngRaty', function () {
-        return {
-            restrict: "A",
-            scope: {
-                ngRaty: '=',
-                ngModel: '=',
-                mouseOver: '&',
-                mouseOut: '&'
-            },
-            link: function ($scope, $element, $attrs) {
-                var rating = $scope.ngModel;
-                var raty = {
-                    score: parseFloat(rating, 10),
-                    click: function (stars, evt) {
-                        evt.stopPropagation();
-                        if (!stars) stars = 0;
-                        if (!$scope.$$phase) {
-                            $scope.$apply(function () {
-                                $scope.ngModel = parseFloat(stars);
-                            });
-                        } else {
-                            $scope.ngModel = parseFloat(stars);
-                        }
-                    },
-                    mouseover: function (stars, evt) {
-                        if (!$scope.mouseOver) return;
-                        $scope.mouseOver({
-                            stars: stars,
-                            e: evt
-                        });
-                        $scope.$apply();
-                    },
-                    mouseout: function (stars, evt) {
-                        if (!$scope.mouseOut) return;
-                        $scope.mouseOut({
-                            stars: stars,
-                            e: evt
-                        });
-                        $scope.$apply();
-                    }
-                };
-                var options = angular.extend(raty, $scope.ngRaty || {});
-                $element.raty(options);
 
-                // Set view to score if model changes
-                $scope.$watch('ngModel', function (newValue, oldValue) {
-                    $element.raty('score', $scope.ngModel);
-                });
 
-                function destroy(){
-                    $element.raty('destroy');
-                }
-                $element.bind('$destroy', destroy);
-            }
-        }
-    });
+
 

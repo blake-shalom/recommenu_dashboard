@@ -10,7 +10,8 @@
  */
 angular.module('recommenuClientDashApp', [
     'ui.router',
-    'restangular'
+    'restangular',
+    'angles'
     //'recommenu.services',
     //'recommenu.controllers',
     //'recommenu.directives'
