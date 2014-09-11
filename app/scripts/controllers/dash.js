@@ -72,4 +72,5 @@ angular.module('recommenuClientDashApp')
             console.log("registser");
             $scope.registerStatus = "Sorry, Registration is closed.";
         }
+
     });
