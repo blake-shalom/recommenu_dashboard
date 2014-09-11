@@ -99,14 +99,17 @@ angular.module('recommenuClientDashApp')
                            getRandomInt(25, 75), getRandomInt(25, 75), getRandomInt(25, 75)]
                 }
             ]
-
-
         };
 
         $scope.donutOptions = {
-            percentageInnerCutout : 70
+            percentageInnerCutout : 70,
+            animationSteps : 35
+        };
 
-        }
+        $scope.donutOptionsNoAnim = {
+            percentageInnerCutout : 70,
+            animateRotate : false
+        };
   });
 
 

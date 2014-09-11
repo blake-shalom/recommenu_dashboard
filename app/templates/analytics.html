@@ -10,7 +10,13 @@
                     <div class="panel-body">
                         <div class="col-lg-4">
                             <h4>{{entry.name}}</h4>
-                            <canvas doughnutchart options="donutOptions" data="entry.donut" width="250" height="250"></canvas>
+                            {{$index}}
+                            <div ng-if="$index > 5">
+                            <canvas doughnutchart options="donutOptionsNoAnim" data="entry.donut" width="250" height="250"></canvas>
+                            </div>
+                            <div ng-if="$index < 5">
+                                <canvas doughnutchart options="donutOptions" data="entry.donut" width="250" height="250"></canvas>
+                            </div>
                         </div>
                         <div class="col-lg-4">
                             <h5>Direct Marketing Views By Date</h5>
