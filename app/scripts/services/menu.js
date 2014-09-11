@@ -8,7 +8,7 @@
  * Factory in the recommenuClientDashApp.
  */
 angular.module('recommenuClientDashApp')
-  .factory('Menuservice', function (Restangular, $window) {
+  .factory('Menuservice', function (Restangular, $window, $http) {
         console.log($window.sessionStorage.company_uri);
         var companyEndpoint = Restangular.one($window.sessionStorage.company_uri);
 
@@ -20,7 +20,7 @@ angular.module('recommenuClientDashApp')
                 console.log('Could not reach company detail endpoint');
             }
         );
-        console.log('COMPANY ID' + $window.sessionStorage.company_id);
+        console.log('COMPANY ID: ' + $window.sessionStorage.company_id);
         return {
             menuList: function(){
                 console.log('api/v1/menus/?company=' + $window.sessionStorage.company_id);
@@ -37,7 +37,31 @@ angular.module('recommenuClientDashApp')
             menuDetail: function(menuId){
                 console.log('Getting Detail for' + menuId);
                 return Restangular.one('api/v1/menus/' + menuId).get();
-                }
+                },
+
+            testing: function(name, commente){
+                console.log('testing the menuservice');
+                //var s = JSON.stringify({responder: name, comoment: comment});
+                //return Restangular.all('api/v1/brand_responses').post(s);
+                var call = $http({
+                    method: 'POST',
+                    url: 'http://tranquil-plateau-8131.herokuapp.com/api/v1/brand_responses/',
+                    data:  /*JSON.stringify({company: "/api/v1/companies/1/", recommendation :"/api/v1/recommendations/1/", 
+                        responder: name, date_posted :"2014-10-10T16:49:26.837659", 
+                        comment: commente})
+                    */
+                    {"company": "/api/v1/companies/1/", "recommendation":"/api/v1/recommendations/19/", "responder":"Bob's American Grille", "date_posted":"2014-10-10T16:49:46.837659", "comment":"Freddie, that sounds like a great strategy! Glad you enjoyed the dish!"}
+                })
+                call.success(function (data, status, headers, config) {
+                    console.log("deny call: success");
+
+                })
+                call.error(function (data, status, headers, config){
+                    console.log('deny call: error');
+
+                });
+                return call;     
+            }
 
                 };
   });

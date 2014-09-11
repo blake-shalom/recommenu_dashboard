@@ -82,6 +82,8 @@ angular.module('recommenuClientDashApp')
         $scope.rate = 7;
         $scope.max = 20;
         $scope.isReadonly = true;
+        $scope.reviewid;
+        var re;
 
         $scope.hoveringOver = function(value) {
             $scope.overStar = value;
@@ -94,19 +96,58 @@ angular.module('recommenuClientDashApp')
         };
 
 
-        $scope.popup1 = function(){
-            console.log('clicked it');
+        $scope.popup1 = function(review){
+            console.log("review: ", review);
+            setid(review);
+            console.log("re: ", re);
             var docHeight = $(document).height(); //grab the height of the page
             var scrollTop = $(window).scrollTop();
             $('.overlay-bg2').show().css({'height' : docHeight}); //display your popup and set height to the page height
             $('.overlay-content2').css({'top': scrollTop+20+'px'}); //set the content 20px from the window top
             };
 
+        var setid = function(id){
+            re = id;
+        }
+
+        var getid = function(){
+            return re;
+        }
+
+        var setname = function(n){
+            $scope.nameR = n;
+            console.log("n: ", n);
+        }
+
+        $scope.setResponse = function(name, comment, reviewid){
+            var b = getid();
+            console.log("b: ", b)
+            console.log("setrespone: ", name , " : ", comment, " : ", reviewid);
+            setname(name);
+
+            $('.overlay-bg2').hide();
+
+            /*
+            Menuservice.testing(name, comment).then(
+            function(data){
+                console.log("setResponse: Success!");
+            },
+            function(res){
+                console.log("Could not retrieve reviews", res.status);
+            });
+            */
+
+            $scope.uname = "";
+            $scope.ucomment = "";
+
+            
+        }
+
 
         // hide popup when user clicks on close button
         $('.close-btn2').click(function(){
         $('.overlay-bg2').hide(); // hide the overlay
-    });
+            });
 
     // hides the popup if user clicks anywhere outside the container
     $('.overlay-bg2').click(function(){

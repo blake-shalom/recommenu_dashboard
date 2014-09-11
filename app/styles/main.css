@@ -8,6 +8,7 @@ body {
     padding: 0px !important;
     margin: 0px !important;
     font-size:13px;
+    overflow-x:hidden;
 
 }
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
@@ -114,6 +115,8 @@ a, a:hover, a:focus {
     background-color: #ed5565;
 }
 /*Theme Buttons*/
+
+.btn a{color:white;}
 
 /*button-theme being used for the buttons on notifications menu */
 .btn-yellow {
@@ -539,7 +542,9 @@ ul.sidebar-menu li a.active i {
     padding-right: 15px;*/
     padding-bottom: 15px;
     padding-top: 0px;
-    width: 105%;
+    width: 94%;
+    margin-left:3em;
+    overflow-x:hidden;
 }
 
 a.logo {
@@ -2203,6 +2208,9 @@ ul li {
     text-align: center;
 }
 
+.loginstatus{padding:0;}
+.loginstatus p{padding: 0;margin:0;}
+
 .login-social-link {
     display: block;
     margin-top: 20px;
@@ -3781,7 +3789,7 @@ tab {
 }
 
 .member-login .form-panel .registration {
-    margin-top: 10%;
+    margin-top: 5%;
     margin-bottom: 10%;
     text-align: center;
     font-weight: bold;
@@ -3878,7 +3886,7 @@ tab {
     color: black;
     width: 300px;
     margin-left: 16%;
-    height: 650px;
+    height: 690px;
 }
 
 .register .form-panel .input-group {
@@ -3898,8 +3906,8 @@ tab {
 }
 
 .register .form-panel .registration {
-    margin-top: 10%;
-    margin-bottom: 10%;
+    margin-top: 5%;
+    margin-bottom: 15%;
     text-align: center;
     font-weight: bold;
     color: #FF3300;
@@ -4550,7 +4558,6 @@ Create New Menu
 
 }
 
-
 .overlay-bg2 {
     display: none;
     position: absolute;
@@ -4559,15 +4566,15 @@ Create New Menu
     height:100%;
     width: 100%;
     cursor: pointer;
-    z-index: 1000; /* high z-index */
+    z-index: 100000; /* high z-index */
     background: #000; /* fallback */
     background: rgba(0,0,0,0.75);
 }
 .overlay-content2 {
     background: #fff;
     padding: 1%;
-    height: 40%;
-    width: 40%;
+    height: 30em;
+    width: 40em;
     position: relative;
     top: 15%;
     left: 50%;
