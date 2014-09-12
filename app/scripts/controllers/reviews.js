@@ -32,7 +32,9 @@ angular.module('recommenuClientDashApp')
             }
         );
 
-        Menuservice.review().then(
+        var getReviews = function(){
+            
+            Menuservice.review().then(
             function(data){
                 $scope.reviews = data;
                 $scope.total_reviews = data.metadata.total_count;
@@ -42,6 +44,10 @@ angular.module('recommenuClientDashApp')
             function(res){
                 console.log("Could not retrieve reviews", res.status);
             });
+        };
+
+        getReviews();
+
 
         $scope.newMenu = function() {
             $state.go('dashboard.notifications.newmenu');
@@ -165,6 +171,8 @@ angular.module('recommenuClientDashApp')
                     console.log("setResponse: Success!");
                     $scope.responseSuccess = true;
                     $scope.responseMessage = "Your response was sent successfully!";
+                    console.log("Reloading Reviews");
+                    getReviews();
                 },
                 function(res){
                     console.log("Could not retrieve reviews", res.status);
