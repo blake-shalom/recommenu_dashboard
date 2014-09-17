@@ -40,19 +40,19 @@ angular.module('recommenuClientDashApp', [
         /* Navigation and states for dashboard screens*/
         .state('dashboard', {
             url: '/dashboard',
-            templateUrl: 'templates/dashboard.html',
+            templateUrl: 'views/dashboard.html',
             controller: 'Dashctrl'
         })
 
 
         .state('dashboard.Reviews', {
             url: '/reviews',
-            templateUrl: 'templates/reviews.html',
+            templateUrl: 'views/reviews.html',
             controller: 'Reviewsctrl'
         })
         .state('dashboard.analytics', {
             url: '/analytics',
-            templateUrl: 'templates/analytics.html',
+            templateUrl: 'views/analytics.html',
             controller: 'AnalysisCtrl'
         });
 
