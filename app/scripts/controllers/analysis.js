@@ -110,6 +110,10 @@ angular.module('recommenuClientDashApp')
             percentageInnerCutout : 70,
             animateRotate : false
         };
+
+        $scope.toggleActive = function(){
+            $(event.target).css('active');
+        }
   });
 
 

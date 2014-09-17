@@ -1,5 +1,5 @@
 <div>
-    <div class=" top110 bot15 grey-panel right80 left30">
+    <div class=" top110 bot15 grey-panel right10 left10">
 
         <div class="panel-body">
                 <div class="col-lg-10 col-lg-offset-1 top30">
@@ -13,7 +13,7 @@
                 </div>
         </div>
     </div>
-    <div class=" bot15 grey-panel right80 left30">
+    <div class=" bot15 grey-panel right10 left10">
         <div class="panel-body">
                 <div class="col-lg-10 col-lg-offset-1 top5">
 
@@ -64,7 +64,7 @@
                             </form></div></div>
 
 
-                            <div class="content-panel right-60 left-60 bot15" ng-repeat="review in reviews">
+                            <div class="content-panel left-80 right-80 bot15" ng-repeat="review in reviews">
 
                                 
                                 
@@ -95,7 +95,7 @@
 
                                     <div class = "col-lg-12">
                                         <div class="pull-left">
-                                          <button class = "btn send-btn"><a href="mailto:{{review.user.user.email}}?Subject=Responding%20too%20your%20comment.">SEND MESSAGE</a></button>
+                                          <button class = "btn send-btn"><a href="mailto:{{review.user.user.email}}?Subject=Responding%20to%20your%20comment.">SEND MESSAGE</a></button>
 
                                           <button class = "btn done-btn" ng-click = "popup1(review.id)"> COMMENT </button>
                                         </div>
