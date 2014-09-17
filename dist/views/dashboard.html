@@ -1,0 +1,68 @@
+<section id="container"> <!-- *******************************************************************************************************************
+    TOP BAR CONTENT
+    ******************************************************************************************************************** --> <!--header start--> <header class="header black-bg"> <div class="nav" id="top_menu"> <ul class="nav top-menu"> <li class="top-menu-middle"> <a href=""> {{ profileInfo.first_name }} </a> </li> <li class="top-menu-middle"> <a href="#/dashboard">HELP/SUPPORT</a> </li> <li class=""> <a href="#/dashboard">{{loginSuccess}}</a> </li> <li class="nav top-menu-left"> <a>RECOMMENU DASHBOARD</a> </li> </ul> </div> </header> <!--header end--> </section> <div class="overlay-bg"> <div class="overlay-content"> <p class="register-circle"><i class="fa fa-calendar-o"></i></p> <p class="popup-heading">CONFIRMATION</p> <p class="popup-content">{{ content1 }}</p> <p class="popup-content">{{ content2 }}</p> <button class="close-btn">Close</button> </div> </div> <!--
+<div class="overlay-bg2" ng-controller="Reviewsctrl">
+    <div class="overlay-content2" >
+        <div class="form-group">
+            <div class="">
+                <input type="text" class="form-control"  autofocus placeholder="Name" ng-model="uname">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="">
+                <textarea rows="12" class="form-control"  autofocus placeholder="Comment" ng-model="ucomment"></textarea>
+            </div>
+        </div>
+        
+        <button class="btn" ng-click="setResponse(uname, ucomment, reviewid)"> Submit Comment</button>
+    </div>
+</div>
+--> <!-- *******************************************************************************************************************
+          MAIN SIDEBAR MENU
+          ********************************************************************************************************** --> <!--sidebar start--> <aside> <div id="sidebar" class="nav-collapse"> <!-- sidebar menu start--> <div> <ul class="sidebar-menu" id="topsidebar"> <p class="centered"><a ui-sref="dashboard.profile"><img src="https://s3-us-west-2.amazonaws.com/recommenu-media/logo-pictures/Recommenu_icon_180.png" class="img-circle" width="80"></a></p> <h5 class="centered"> {{ profileInfo.first_name }} {{ profileInfo.last_name }} </h5> </ul> </div> <div> <ul class="sidebar-menu" id="botsidebar"> <ul class="mt"> <li> <a href="#/dashboard/reviews"> <i class="fa fa-comment"></i> Review Feed </a> </li> <li> <a href="#/dashboard/analytics"> <i class="fa fa-upload"></i> Analytics </a> </li> </ul> </ul> </div> <!-- sidebar menu end--> </div> </aside> <!-- *******************************************************************************************************************
+      MAIN CONTENT
+     ****************************************************************************************************************--> <section id="main-content"> <section class="wrapper" ui-view> <div class="col-lg-12 member-login" role="form"> <div class="form-panel"> <p class="icon-circle"><i class="fa fa-user"></i></p> <label>MEMBER LOGIN</label> <div class="input-group"> <input type="text" class="form-control" placeholder="Username" ng-model="username" autofocus> </div> <br> <div class="input-group"> <input type="password" class="form-control" ng-model="password" placeholder="Password"> </div> <label class="login"> <button class="btn btn-theme-login" type="submit" ng-click="signIn(username, password)"> LOG IN</button> </label> <div class="loginstatus"> <p class="text-center">{{ loginStatus }}</p> </div> <div class="registration"> <a class="registration" href="#"> FORGOT PASSWORD </a> </div> </div> </div> <!--
+        <div class="col-lg-4 register">
+            <div class="form-panel">
+                <p class="icon-circle"><i class="fa fa-pencil-square-o"></i></p>
+                <label>REGISTER</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" ng-model = "first_name" placeholder="FIRST NAME" autofocus>
+                </div>
+                <br>
+                <div class="input-group">
+                    <input type="text" class="form-control" ng-model = "last_name" placeholder="LAST NAME" autofocus>
+                </div>
+                <br>
+                <div class="input-group">
+                    <input type="text" class="form-control" ng-model = "email" placeholder="EMAIL" autofocus>
+                </div>
+                <br>
+                <div class="input-group">
+                    <input type="text" class="form-control" ng-model = "company" placeholder="COMPANY" autofocus>
+                </div>
+                <br>
+                <div class="input-group">
+                    <input type="text" class="form-control" ng-model = "username1"placeholder="USERNAME" autofocus>
+                </div>
+                <br>
+                <div class="input-group">
+                    <input type="password" class="form-control" ng-model = "password1" placeholder="PASSWORD">
+                </div>
+                <br>
+                <div class="input-group">
+                    <input type="password" class="form-control" placeholder="CONFIRM PASSWORD">
+                </div>
+                <label class="login">
+                    <a class="btn btn-theme-register" type="submit" ng-click="register(first_name, last_name, email, username1, password1)"> REGISTER</a>
+                </label>
+                <div class="loginstatus">
+                    <p class="text-center">{{ registerStatus }}</p>
+                </div>
+                <div class="registration">
+                    <a class="registration" href="#">
+                        MEMBER LOG IN
+                    </a>
+                </div>
+            </div>
+        </div>--> </section> </section>
