@@ -10,6 +10,7 @@
 angular.module('recommenuClientDashApp')
 
   .controller('AnalysisCtrl', function ($scope, Menuservice) {
+        $scope.pageLoading = true;
         $scope.donuts_data = {};
         Menuservice.menuList().then(
             function(data){
@@ -73,7 +74,7 @@ angular.module('recommenuClientDashApp')
                     }
 
                 }
-
+                $scope.pageLoading = false;
             },
             function(res){
                 console.log("failed menulist get", res.status);
@@ -100,16 +101,15 @@ angular.module('recommenuClientDashApp')
                 }
             ]
         };
+        $scope.lineOptions = {
+            animation: false
+        };
 
         $scope.donutOptions = {
             percentageInnerCutout : 70,
-            animationSteps : 35
-        };
-
-        $scope.donutOptionsNoAnim = {
-            percentageInnerCutout : 70,
             animateRotate : false
         };
+
 
         $scope.toggleActive = function(){
             $(event.target).css('active');

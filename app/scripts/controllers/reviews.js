@@ -137,10 +137,12 @@ angular.module('recommenuClientDashApp')
             var docHeight = $(document).height(); //grab the height of the page
             var scrollTop = $(window).scrollTop();
             $('.overlay-bg2').show().css({'height' : docHeight}); //display your popup and set height to the page height
-            $('.overlay-content2').css({'top': scrollTop+20+'px'});
+            $('.overlay-content2').css({'top': scrollTop-200+'px'});
+            $('.overlay-content2').css({'margin-left': -200+'px'});
 
 
-        }
+
+        };
 
         $scope.setResponse = function(name, comment, reviewid){
 

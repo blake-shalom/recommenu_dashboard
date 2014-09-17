@@ -4608,7 +4608,6 @@ Create New Menu
     height: 32em;
     width: 40em;
     position: relative;
-    top:;
     left: 50%;
     margin: 17% 0 0 -20%; /* add negative left margin for half the width to center the div */
     cursor: default;
@@ -4723,6 +4722,10 @@ display:inline-block;
     transform: scale(1.0);
     -webkit-transform: scale(1.0);
   }
+}
+
+input:focus::-webkit-input-placeholder {
+    opacity: 0;
 }
 
 

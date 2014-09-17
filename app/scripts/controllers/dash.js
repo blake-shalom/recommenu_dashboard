@@ -53,8 +53,7 @@ angular.module('recommenuClientDashApp')
                             function(res){
                                 console.log('failed profile get', res.status);
                             });
-//                            $state.go('dashboard.Reviews');
-
+                            $state.go('dashboard.Reviews');
                     },
                     function(res){
                         console.log('failed login', res.status);

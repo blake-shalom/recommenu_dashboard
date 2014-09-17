@@ -1,4 +1,20 @@
 <div>
+    <div class="overlay-bg2" ng-show="clickedit">
+        <div class="overlay-content2" >
+            <div class="form-group">
+                <div class="">
+                    <input type="text" class="form-control"  autofocus placeholder="Name" ng-model="uname">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="">
+                    <textarea rows="12" class="form-control"  autofocus placeholder="Comment" ng-model="ucomment"></textarea>
+                </div>
+            </div>
+            <button class="btn" ng-click="setResponse(uname, ucomment, reviewIDPassed)"> Submit Comment</button>
+            <h4>{{response}}</h4>
+        </div>
+    </div>
      <div class="header secondaryHeader" ng-show="responseSuccess">
         <div class="nav" id="top_menu">
             <ul class="nav top-menu">
@@ -12,106 +28,79 @@
         </div>
     </div>
 
-    <div class=" top110 bot15 grey-panel right80 left30">
+    <div class=" top110 bot15 message-p pn right10 left10">
+        <div class="message-header">
+            <div class="panel-body left-60">
+                <form class="form-inline" role="form">
+                    <div class="col-lg-2">
+                        <b>Sort By:</b>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="form-group">
+                            <select class="form-control">
+                                <option value='' disabled selected style='display:none;'>Time</option>
+                                <option value="">Most Recent</option>
+                                <option value="Austin">Oldest</option>
 
-        <div class="panel-body">
-                <div class="col-lg-10 col-lg-offset-1 top30">
-                    <div class="{{main4}}">
-                        <div class="{{header}}">
-                            <div>
-                                <a href = "/"> ALL REVIEWS ({{total_reviews}}) / TOP REVIEWS ({{top_reviews}}) / MOST RECENT ({{most_recent}}) </a>
-                            </div>
+                            </select>
                         </div>
                     </div>
-                </div>
+                    <div class="col-lg-2">
+                        <div class="form-group">
 
-                <!--    Loading Animation   -->
-                <div class="pull-right">
-                    <div class="spinner" ng-show="pageLoading">
-                      <div class="double-bounce1"></div>
-                      <div class="double-bounce2"></div>
+                            <select class="form-control">
+                                <option value='' disabled selected style='display:none;'>Location</option>
+                                <option value="Austin">Appetizers</option>
+                                <option value="San Fransisco">Entrees</option>
+                                <option value="Pittsburgh">Desserts</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
+                    <div class="col-lg-2">
+                        <div class="form-group">
+
+                            <select class="form-control">
+                                <option value='' disabled selected style='display:none;'>Rating</option>
+                                <option value="">0</option>
+                                <option value="Austin">1</option>
+                                <option value="San Fransisco">2</option>
+                                <option value="Pittsburgh">3</option>
+                                <option value="Pittsburgh">4</option>
+                                <option value="Pittsburgh">5</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <input type="text" class="form-control" placeholder="SEARCH" autofocus>
+                    </div>
+
+                    <div class="col-lg-2" >
+                        <!--    Loading Animation   -->
+                        <div class="pull-right">
+                            <div class="spinner" ng-show="pageLoading">
+                                <div class="double-bounce1"></div>
+                                <div class="double-bounce2"></div>
+                            </div>
+                        </div>
+                        <div ng-show="!pageLoading"><b>{{total_reviews}} Total Reviews</b></div>
+                    </div>
+                </form></div>
         </div>
-    </div>
-    <div class=" bot15 grey-panel right80 left30">
-        <div class="panel-body">
+        <div class="panel-body catch-overflow">
                 <div class="col-lg-10 col-lg-offset-1 top5">
 
 
-                            <div class="grey-panel">
-                                <div class="panel-body left-60">
-                                 <form class="form-inline" role="form">
-                                <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <b>Sort By: </b>
-                                        <label control-label> Time </label>
-                                        <select class="form-control">
-                                            <option value="">Most Recent</option>
-                                            <option value="Austin">Oldest</option>
-
-                                        </select>
-                                    </div>
-                                </div>
-                                    <div class="col-lg-4">
-                                        <div class="form-group">
-                                            <label control-label> Location </label>
-                                            <select class="form-control">
-                                                <option value="">Select Category</option>
-                                                <option value="Austin">Appetizers</option>
-                                                <option value="San Fransisco">Entrees</option>
-                                                <option value="Pittsburgh">Desserts</option>
-                                            </select>
-                                        </div>
-
-                                        </div>
-
-                                    <div class="col-lg-2">
-                                        <div class="form-group">
-                                <label control-label> Rating </label>
-                                <select class="form-control">
-                                    <option value="">0</option>
-                                    <option value="Austin">1</option>
-                                    <option value="San Fransisco">2</option>
-                                    <option value="Pittsburgh">3</option>
-                                    <option value="Pittsburgh">4</option>
-                                    <option value="Pittsburgh">5</option>
-                                </select>
-                                        </div>
-                                        </div>
-
-                                    <div class="col-lg-2">
-                                <input type="text" class="form-control" placeholder="SEARCH" autofocus></div>
-                            </form></div></div>
-
-                            <div class="overlay-bg2" ng-show="clickedit">
-                                <div class="overlay-content2" >
-                                    <div class="form-group">
-                                        <div class="">
-                                            <input type="text" class="form-control"  autofocus placeholder="Name" ng-model="uname">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="">
-                                            <textarea rows="12" class="form-control"  autofocus placeholder="Comment" ng-model="ucomment"></textarea>
-                                        </div>
-                                    </div>
-                                    <button class="btn" ng-click="setResponse(uname, ucomment, reviewIDPassed)"> Submit Comment</button>
-                                    <h4>{{response}}</h4>
-                                </div>
-                            </div>
-
 
                             <div class="content-panel right-60 left-60 bot15" ng-repeat="review in reviews">
-
                                 <div class="panel-body">
                                     <div class = "col-lg-2">
                                         <p><a href="profile.html"><i class=" fa fa-3x fa-user"></i></a> {{review.user.user.username}}</p>
 
                                     </div>
                                     <div class = "col-lg-9">
-                                    <h5 class="pull-left"> <b>Date: </b> {{review.date_posted | date: 'shortDate'}}</h5><br/><br/>
-                                    <h5 class="pull-left"><b>Score: </b>{{review.stars}}</h5><br/><br/>
+                                    <h5 class="pull-left"> <b>Date: </b> {{review.date_posted | date: 'medium'}}</h5><br/><br/>
+                                    <h5 class="pull-left"><b>Score: </b></h5><raty class="top5" id="star{{$index}}" score="{{review.stars | number:1}}" number="5"></raty><br/><br/>
                                     <h5 class="pull-left"><b>Title: </b>{{review.title}}</h5><br/><br/>
                                     <h5 class="pull-left"> <b>COMMENTS: </b></h5>
                                     <br/><div class="pull-left">{{review.comment}}</div>
