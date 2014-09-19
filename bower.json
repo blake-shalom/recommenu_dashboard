@@ -21,5 +21,11 @@
     "angular-mocks": "1.2.16",
     "angular-scenario": "1.2.16"
   },
-  "appPath": "app"
+  "appPath": "app",
+
+    "overrides": {
+        "raty": {
+            "main": "./lib/jquery.raty.js"
+        }
+    }
 }
