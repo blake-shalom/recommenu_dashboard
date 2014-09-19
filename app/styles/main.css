@@ -4731,4 +4731,8 @@ input:focus::-webkit-input-placeholder {
     opacity: 0;
 }
 
-
+raty > img {
+    height: 20px;
+    width: 20px;
+    margin-top: 1%;
+}

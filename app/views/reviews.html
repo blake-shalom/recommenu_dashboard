@@ -16,8 +16,8 @@
         </div>
     </div>
      <div class="header secondaryHeader" ng-show="responseSuccess">
-        <div class="nav" id="top_menu">
-            <ul class="nav top-menu">
+         <div class="nav" id="top_menu">
+             <ul class="nav top-menu">
                 <li class = "nav pull-left">
                     <h5>{{responseMessage}}</h5>
                 </li>
@@ -37,44 +37,37 @@
                     </div>
                     <div class="col-lg-2">
                         <div class="form-group">
-                            <select class="form-control">
+                            <select class="form-control" ng-model="time">
                                 <option value='' disabled selected style='display:none;'>Time</option>
-                                <option value="">Most Recent</option>
-                                <option value="Austin">Oldest</option>
-
+                                <option value="">None</option>
+                                <option value="date_posted">Most Recent</option>
+                                <option value="-date_posted">Oldest</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-lg-2">
                         <div class="form-group">
+                            <select class="form-control" ng-model="sectionfilter.entry.section">
+                                <option value='' disabled selected style='display:none;'>Section</option>
+                                <option value="">None</option>
 
-                            <select class="form-control">
-                                <option value='' disabled selected style='display:none;'>Location</option>
-                                <option value="Austin">Appetizers</option>
-                                <option value="San Fransisco">Entrees</option>
-                                <option value="Pittsburgh">Desserts</option>
+                                <option  ng-repeat="section in sectionList" value="{{section.resource_uri}}">{{section.name}}</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-lg-2">
                         <div class="form-group">
-
-                            <select class="form-control">
+                            <select class="form-control" ng-model="rating">
                                 <option value='' disabled selected style='display:none;'>Rating</option>
-                                <option value="">0</option>
-                                <option value="Austin">1</option>
-                                <option value="San Fransisco">2</option>
-                                <option value="Pittsburgh">3</option>
-                                <option value="Pittsburgh">4</option>
-                                <option value="Pittsburgh">5</option>
+                                <option value="">None</option>
+                                <option value="stars">Low to High</option>
+                                <option value="-stars">High to Low</option>
                             </select>
                         </div>
                     </div>
-
                     <div class="col-lg-2">
-                        <input type="text" class="form-control" placeholder="SEARCH" autofocus>
+                        <input type="text" class="form-control" ng-model="searchText.comment" placeholder="SEARCH" autofocus>
                     </div>
-
                     <div class="col-lg-2" >
                         <!--    Loading Animation   -->
                         <div class="pull-right">
@@ -89,16 +82,14 @@
         </div>
         <div class="panel-body catch-overflow">
                 <div class="col-lg-10 col-lg-offset-1 top5">
-
-
-
-                            <div class="content-panel right-60 left-60 bot15" ng-repeat="review in reviews">
+                            <div class="content-panel right-60 left-60 bot15" ng-repeat="review in reviews | orderBy:time | orderBy:rating | filter:searchText:strict | filter:sectionfilter:strict">
                                 <div class="panel-body">
                                     <div class = "col-lg-2">
                                         <p><a href="profile.html"><i class=" fa fa-3x fa-user"></i></a> {{review.user.user.username}}</p>
 
                                     </div>
                                     <div class = "col-lg-9">
+                                        {{review.entry.name}}{{review.entry.section}}
                                     <h5 class="pull-left"> <b>Date: </b> {{review.date_posted | date: 'medium'}}</h5><br/><br/>
                                     <h5 class="pull-left"><b>Score: </b></h5><raty class="top5" id="star{{$index}}" score="{{review.stars | number:1}}" number="5"></raty><br/><br/>
                                     <h5 class="pull-left"><b>Title: </b>{{review.title}}</h5><br/><br/>
@@ -117,7 +108,6 @@
                                         </div>
                                     </div>
                                     </div>
-
                                     <!-- brand responses -->
                                     <h5 class="pull-left"> <b>RESPONSES: </b></h5>
 
@@ -149,9 +139,6 @@
                 </div>
             </div>
     </div>
-    
-
 </div>
-
 </div>
 

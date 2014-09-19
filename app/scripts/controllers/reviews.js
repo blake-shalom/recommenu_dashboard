@@ -32,6 +32,17 @@ angular.module('recommenuClientDashApp')
             }
         );
 
+        Menuservice.sections().then(
+            function(data){
+                console.log(data[0].name);
+                $scope.sectionList = data;
+                $scope.sections_meta = data.metadata;
+            },
+            function(res){
+                console.log("failed menu-list get", res.status);
+            }
+        );
+
         var getReviews = function(){
             
             Menuservice.review().then(
@@ -68,6 +79,7 @@ angular.module('recommenuClientDashApp')
         $scope.select = function () {
             $scope.list.push('1')
         };
+
 
 
 
