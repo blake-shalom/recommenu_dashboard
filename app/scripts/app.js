@@ -38,12 +38,19 @@ angular.module('recommenuClientDashApp', [
 
     $stateProvider
         /* Navigation and states for dashboard screens*/
+
+    .state('login', {
+            url: '/login',
+            templateUrl: 'views/login.html',
+            controller: 'LoginCtrl'
+        }
+    )
+
         .state('dashboard', {
             url: '/dashboard',
             templateUrl: 'views/dashboard.html',
             controller: 'Dashctrl'
         })
-
 
         .state('dashboard.Reviews', {
             url: '/reviews',
@@ -56,7 +63,7 @@ angular.module('recommenuClientDashApp', [
             controller: 'AnalysisCtrl'
         });
 
-    $urlRouterProvider.otherwise('/dashboard');
+    $urlRouterProvider.otherwise('/login');
 });
 
 

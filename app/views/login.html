@@ -1,0 +1,25 @@
+
+    <div class="col-lg-4 col-lg-offset-4 member-login top15p" role="form">
+        <div class="form-panel pull-left ">
+            <p class="icon-circle"><i class="fa fa-user"></i></p>
+            <label>MEMBER LOGIN</label>
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Username" ng-model = "username" autofocus>
+            </div>
+            <br>
+            <div class="input-group">
+                <input type="password" class="form-control" ng-model = "password" placeholder="Password">
+            </div>
+            <label class="login">
+                <button class="btn btn-theme-login" type="submit" ng-click="signIn(username, password)"> LOG IN</button>
+            </label>
+            <div class="loginstatus">
+                <p class="text-center">{{ loginStatus }}</p>
+            </div>
+            <div class="registration">
+                <a class="registration" href="#">
+                    FORGOT PASSWORD
+                </a>
+            </div>
+        </div>
+    </div>

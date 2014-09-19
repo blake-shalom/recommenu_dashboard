@@ -32,6 +32,10 @@ body {
 .top80 { margin-top:80px; }
 .top110 { margin-top:110px; }
 
+.top15p{
+    margin-top: 15%;
+}
+
 .left30{
     margin-left: 30px;
 }
@@ -517,6 +521,7 @@ ul.sidebar-menu li a.active i {
 /* MAIN CONTENT CONFIGURATION */
 #main-content {
     margin-left: 210px;
+    background-color: #ffffff;
 }
 
 .header, .footer {
@@ -3788,16 +3793,14 @@ tab {
 
 
 /*member login */
-.member-login {
-    margin-top: 10%;
-    margin-left: 5%;
-}
+
 .member-login .form-panel{
     background: #DCDCDC;
     color: black;
     width: 300px;
-    margin-left: 16%;
+    margin-left: 10%;
     height: 350px;
+    box-shadow: none;
 }
 
 .member-login .form-panel .input-group {

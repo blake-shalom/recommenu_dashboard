@@ -2,23 +2,21 @@
 
 /**
  * @ngdoc function
- * @name recommenuClientDashApp.controller:DashctrlCtrl
+ * @name recommenuClientDashApp.controller:LoginCtrl
  * @description
- * # DashctrlCtrl
+ * # LoginCtrl
  * Controller of the recommenuClientDashApp
  */
 angular.module('recommenuClientDashApp')
-  .controller('Dashctrl', function ($scope, $state, Restangular, $window, Dashboardservice,
-                                    Userservice, Authenticationservice, $location) {
-
-
-
+  .controller('LoginCtrl', function ($scope, $state, Restangular, $window, Dashboardservice,
+                                     Userservice, Authenticationservice, $location) {
+        $.backstretch("../images/login-background.png", {speed: 500});
         $scope.profileInfo = {};
         $scope.content1 = 'Thank you for registering to the Recommenu Dashboard! Please Check your ' +
-                          'emaifl for a confirmation request with a link that will confirm your account. Once you ' +
-                          'click the link, your registration will be complete!';
+            'emaifl for a confirmation request with a link that will confirm your account. Once you ' +
+            'click the link, your registration will be complete!';
         $scope.content2 = 'If for some reason you don not recieve the email within 24 hours, contact us via ' +
-                          'recommenu@gmail.com and we"ll do our best to get you back on track.';
+            'recommenu@gmail.com and we"ll do our best to get you back on track.';
         $scope.signIn = function(username, password) {
             // Check for missing credentials
             $scope.loginStatus = "Attempting to login...";
@@ -52,11 +50,13 @@ angular.module('recommenuClientDashApp')
                                 );
                                 console.log($window.sessionStorage.company_uri);
                                 console.log($scope.profileInfo['first_name']);
+
                             },
                             function(res){
                                 console.log('failed profile get', res.status);
                             });
-                            $state.go('dashboard.Reviews');
+                        $.backstretch("../images/clear.png", {speed: 0});
+                        $state.go('dashboard.Reviews');
                     },
                     function(res){
                         console.log('failed login', res.status);
@@ -74,5 +74,4 @@ angular.module('recommenuClientDashApp')
             console.log("registser");
             $scope.registerStatus = "Sorry, Registration is closed.";
         }
-
-    });
+  });

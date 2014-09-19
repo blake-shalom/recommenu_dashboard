@@ -14,7 +14,8 @@
     "ngRaty": "*",
     "raty": "~2.7.0",
     "fontawesome": "~4.2.0",
-    "angles": "*"
+    "angles": "*",
+    "jquery-backstretch": "~2.0.4"
   },
   "devDependencies": {
     "angular-mocks": "1.2.16",
