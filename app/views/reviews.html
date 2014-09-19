@@ -89,7 +89,6 @@
 
                                     </div>
                                     <div class = "col-lg-9">
-                                        {{review.entry.name}}{{review.entry.section}}
                                     <h5 class="pull-left"> <b>Date: </b> {{review.date_posted | date: 'medium'}}</h5><br/><br/>
                                     <h5 class="pull-left"><b>Score: </b></h5><raty class="top5" id="star{{$index}}" score="{{review.stars | number:1}}" number="5"></raty><br/><br/>
                                     <h5 class="pull-left"><b>Title: </b>{{review.title}}</h5><br/><br/>
