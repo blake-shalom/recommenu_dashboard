@@ -20,32 +20,31 @@ angular.module('recommenuClientDashApp')
                 console.log('Could not reach company detail endpoint');
             }
         );
-        console.log('COMPANY ID: ' + $window.sessionStorage.company_id);
         return {
             menuList: function(){
-                console.log('api/v1/menus/?company=' + $window.sessionStorage.company_id);
                 return Restangular.one('api/v1/menus/?company=' + $window.sessionStorage.company_id).getList();
             },
             review: function(){
                 //return Restangular.all('/api/v1/recommendations/?format=json').getList();
-                return Restangular.all('/api/v1/recommendations/?entry__section__menu__company=' + $window.sessionStorage.company_id).getList();
+                return Restangular.all('/api/v1/recommendations/?approved=1&entry__section__menu__company=' + $window.sessionStorage.company_id).getList();
             },
             userloc: function(user_location){
                 return Restangular.all(user_location).get();
             },
 
             menuDetail: function(menuId){
-                console.log('Getting Detail for' + menuId);
                 return Restangular.one('api/v1/menus/' + menuId).get();
                 },
             sections: function(menuId){
                 return Restangular.one('api/v1/sections/?menu__company=' + $window.sessionStorage.company_id).getList();
             },
-
+            reviewDetail: function(entryId){
+                return Restangular.one('/api/v1/recommendations/?approved=1&entry=' + entryId).getList();
+            },
             brandResponse: function(name, commente, reviewid, date){
                 console.log('testing the menuservice');
                 console.log("here: ",name," : ", commente," : ", reviewid," : ", date);
-                //var s = JSON.stringify({responder: name, comoment: comment});
+                //var s = JSON.stringify({responder: name, comment: comment});
                 //return Restangular.all('api/v1/brand_responses').post(s);
                 
                 //create recommendation uri

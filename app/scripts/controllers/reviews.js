@@ -8,33 +8,13 @@
  * Controller of the recommenuClientDashApp
  */
 angular.module('recommenuClientDashApp')
-  .controller('Reviewsctrl', function ($scope, $state, $compile, Menuservice, Restangular, Dashboardservice, $window) {
+  .controller('Reviewsctrl', function ($scope, $state, $compile, Menuservice) {
         // get a list of menus for the logged in user
-        $scope.portion1 = "width: 50%";
-        $scope.spice1 = "width: 50%";        
-        $scope.salt1 = "width: 50%";
-        $scope.comment = "I like this food.  Really long text about food. Really long text about food. Really long text about food. Really long text about food. Really long text about food. Really long text about food. Really long text about food. Really long text about food. Really long text about food.";
-        $scope.username = "Jake";
-        $scope.date_posted = "07/06/2014"
-        $scope.score = "3";
         $scope.responseSuccess = false;
-
-
         $scope.pageLoading = true;
-        Menuservice.menuList().then(
-            function(data){
-                console.log(data[0].name);
-                $scope.menus = data;
-                $scope.menus_meta = data.metadata;
-            },
-            function(res){
-                console.log("failed menu-list get", res.status);
-            }
-        );
 
         Menuservice.sections().then(
             function(data){
-                console.log(data[0].name);
                 $scope.sectionList = data;
                 $scope.sections_meta = data.metadata;
             },
@@ -44,7 +24,6 @@ angular.module('recommenuClientDashApp')
         );
 
         var getReviews = function(){
-            
             Menuservice.review().then(
             function(data){
                 $scope.reviews = data;
@@ -79,10 +58,6 @@ angular.module('recommenuClientDashApp')
         $scope.select = function () {
             $scope.list.push('1')
         };
-
-
-
-
 
         $scope.removeDish = function(event){
             console.log("Removing Dish Card");

@@ -11,6 +11,7 @@ angular.module('recommenuClientDashApp')
 
   .controller('AnalysisCtrl', function ($scope, Menuservice) {
         $scope.pageLoading = true;
+        $scope.reviews = {};
         $scope.donuts_data = {};
         Menuservice.menuList().then(
             function(data){
@@ -113,7 +114,21 @@ angular.module('recommenuClientDashApp')
 
         $scope.toggleActive = function(){
             $(event.target).css('active');
-        }
+        };
+
+        $scope.showReviews = function(entryId){
+            Menuservice.reviewDetail(entryId).then(
+                function(data){
+                    $scope.reviews[entryId] = data;
+                },
+                function(res){
+                    console.log(res);
+                }
+
+            );
+
+
+        };
   });
 
 

@@ -70,6 +70,13 @@ angular.module('recommenuClientDashApp')
             }
         };
 
+        $scope.getManager = function(){
+            console.log("actually fucking doing something");
+            console.log($scope.showmanager);
+            $scope.showmanager = true;
+            console.log($scope.showmanager);
+        };
+
         $scope.register = function(){
             console.log("registser");
             $scope.registerStatus = "Sorry, Registration is closed.";
