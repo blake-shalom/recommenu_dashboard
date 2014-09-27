@@ -9,6 +9,7 @@
  */
 angular.module('recommenuClientDashApp')
   .controller('Reviewsctrl', function ($scope, $state, $compile, Menuservice) {
+
         // get a list of menus for the logged in user
         $scope.responseSuccess = false;
         $scope.pageLoading = true;

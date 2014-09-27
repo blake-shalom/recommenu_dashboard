@@ -10,6 +10,7 @@
 angular.module('recommenuClientDashApp')
 
   .controller('AnalysisCtrl', function ($scope, Menuservice) {
+
         $scope.pageLoading = true;
         $scope.reviews = {};
         $scope.donuts_data = {};

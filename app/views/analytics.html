@@ -18,8 +18,14 @@
          <br/><br/>
             <div class="col-lg-10 col-lg-offset-1 bot15">
               <div ng-repeat="menu in menuList">
-                  <div ng-repeat="section in menu.sections">
-                      <div class="left-80 right-80"><h3 class="text-left" id="{{section.name}}">{{section.name}}</h3><hr/></div>
+                  <div ng-repeat="section in menu.sections" ng-init="sectionshow = true">
+
+                      <div class="left-80 right-80"><h3 class="text-left" id="{{section.name}}">{{section.name}}
+                          <a ng-click=" sectionshow = !sectionshow" ng-show="sectionshow == true" class="pull-right"><i class="fa fa-arrow-right"></i></a>
+                          <a ng-click=" sectionshow = !sectionshow" ng-show="sectionshow == false" class="pull-right"><i class="fa fa-arrow-down"></i></a>
+                      </h3>
+                          <hr/></div>
+                      <div ng-show="sectionshow">
                 <div ng-repeat="entry in section.entries"  ng-init="id = entry.id; show = false" class="content-panel right-80 left-80 bot15">
                     <div class="panel-body">
                         <div class="col-lg-3">
@@ -108,5 +114,4 @@
               </div>
             </div>
     </div>
-    </div>
-</div>
+</div></div></div>
