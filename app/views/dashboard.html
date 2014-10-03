@@ -1,193 +1,63 @@
-<section id="container" >
-    <!-- *******************************************************************************************************************
-    TOP BAR CONTENT
-    ******************************************************************************************************************** -->
-    <!--header start-->
-    <header class="header black-bg">
-        <div class="nav" id="top_menu">
-            <ul class="nav top-menu">
-                <li class="top-menu-middle">
-                    <a href="">
-                        {{ profileInfo.first_name }} </a>
-                </li>
-                <li class="top-menu-middle">
-                    <a ng-model="showmanager" data-toggle="modal" data-target="#myModal" ng-click="getManager()" href="">HELP/SUPPORT</a>
-                </li>
-                <li class="">
-                    <a href="#/dashboard">{{loginSuccess}}</a>
-                </li>
-                <li class = "nav top-menu-left">
-                    <a>RECOMMENU DASHBOARD</a>
+<!-- Fixed navbar -->
+<div class="navbar navbar-default navbar-fixed-top recommenu-navbar" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" rel="home" href="#" title="Recommenu Analytics">
+                <img src="../images/topnav-monogram.png" class="top-5">
+            </a>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Bob's American Grille</a>
+        </div>
+        <div class="navbar-collapse collapse">
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="ng-class:onrev"><a   ng-click="onrev='active'; onana=''" href="#/dashboard/reviews">
+                    <i class="fa fa-comments "></i>
+                    Review Feed
+                </a></li>
+                <li class="ng-class:onana" ><a  ng-click="onrev=''; onana='active'" href="#/dashboard/analytics">
+                    <i class="fa fa-area-chart"></i>
+                    Analytics
+                </a></li>
+                <li>
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                        {{ profileInfo.first_name }} {{ profileInfo.last_name }} <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#"><i class="fa fa-sign-out"></i> LOG OUT</a></li>
+                        <li><a ng-model="showmanager" data-toggle="modal" data-target="#myModal" ng-click="getManager()" href=""><i class="fa fa-info-circle"></i> HELP / SUPPORT</a></li>
+                    </ul>
                 </li>
             </ul>
-        </div>
-    </header>
-
-    <!--header end-->
-</section>
-
-
-<!--
-<div class="overlay-bg2" ng-controller="Reviewsctrl">
-    <div class="overlay-content2" >
-        <div class="form-group">
-            <div class="">
-                <input type="text" class="form-control"  autofocus placeholder="Name" ng-model="uname">
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="">
-                <textarea rows="12" class="form-control"  autofocus placeholder="Comment" ng-model="ucomment"></textarea>
-            </div>
-        </div>
-        
-        <button class="btn" ng-click="setResponse(uname, ucomment, reviewid)"> Submit Comment</button>
+        </div><!--/.nav-collapse -->
     </div>
 </div>
--->
-
-<!-- *******************************************************************************************************************
-          MAIN SIDEBAR MENU
-          ********************************************************************************************************** -->
-<!--sidebar start-->
-<aside>
-    <div id="sidebar"  class="nav-collapse ">
-        <!-- sidebar menu start-->
-        <div>
-            <ul class="sidebar-menu" id="topsidebar">
-                <p class="centered"><a ui-sref="dashboard.profile"><img src="https://s3-us-west-2.amazonaws.com/recommenu-media/logo-pictures/Recommenu_icon_180.png" class="img-circle" width="80"></a></p>
-                <h5 class="centered"> {{ profileInfo.first_name }} {{ profileInfo.last_name }} </h5>
-            </ul>
-        </div>
-        <div>
-            <ul class="sidebar-menu" id="botsidebar">
-                <ul class="mt">
-                    <li>
-                        <a class="ng-class:onrev"  ng-click="onrev='active'; onana=''" href="#/dashboard/reviews">
-                            <i class="fa fa-comment "></i>
-                            Review Feed
-                        </a>
-                    </li>
-                    <li>
-                        <a class="ng-class:onana"  ng-click="onrev=''; onana='active'" href="#/dashboard/analytics">
-                            <i class="fa fa-upload"></i>
-                            Analytics
-                        </a>
-                    </li>
-                </ul>
-            </ul>
-        </div>
-        <!-- sidebar menu end-->
-    </div>
-</aside>
 <!-- *******************************************************************************************************************
       MAIN CONTENT
      ****************************************************************************************************************-->
-<section id="main-content">
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Help and Support</h4>
-                </div>
-                <div class="modal-body">
-                    Your Account Manager is <b>Blake Ellingham</b><br/>
-                    <b>c:</b> 281-111-222<br/>
-                    <b>e:</b> blake@gmail.com
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header recommenu-modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Help and Support</h4>
+            </div>
+            <div class="modal-body">
+                Your Account Manager is <b>Blake Ellingham</b><br/>
+                <b>c:</b> 281-111-222<br/>
+                <b>e:</b> blake@gmail.com
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
-    <div class="overlay-bg2" ng-show="showmanager">
-        <div class="overlay-content2" >
-            <div class="form-group">
-                <div class="">
-                    <input type="text" class="form-control"  autofocus placeholder="Name" ng-model="uname">
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="">
-                    <textarea rows="12" class="form-control"  autofocus placeholder="Comment" ng-model="ucomment"></textarea>
-                </div>
-            </div>
-            <button class="btn" ng-click="setResponse(uname, ucomment, reviewIDPassed)"> Submit Comment</button>
-            <h4>{{response}}</h4>
-        </div>
-    </div>
-    <section class="wrapper" ui-view>
-        <div class="col-lg-12 member-login" role="form">
-            <div class="form-panel">
-                <p class="icon-circle"><i class="fa fa-user"></i></p>
-                <label>MEMBER LOGIN</label>
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Username" ng-model = "username" autofocus>
-                </div>
-                <br>
-                <div class="input-group">
-                    <input type="password" class="form-control" ng-model = "password" placeholder="Password">
-                </div>
-                <label class="login">
-                    <button class="btn btn-theme-login" type="submit" ng-click="signIn(username, password)"> LOG IN</button>
-                </label>
-                <div class="loginstatus">
-                    <p class="text-center">{{ loginStatus }}</p>
-                </div>
-                <div class="registration">
-                    <a class="registration" href="#">
-                        FORGOT PASSWORD
-                    </a>
-                </div>
-            </div>
-        </div>
-       <!--
-        <div class="col-lg-4 register">
-            <div class="form-panel">
-                <p class="icon-circle"><i class="fa fa-pencil-square-o"></i></p>
-                <label>REGISTER</label>
-                <div class="input-group">
-                    <input type="text" class="form-control" ng-model = "first_name" placeholder="FIRST NAME" autofocus>
-                </div>
-                <br>
-                <div class="input-group">
-                    <input type="text" class="form-control" ng-model = "last_name" placeholder="LAST NAME" autofocus>
-                </div>
-                <br>
-                <div class="input-group">
-                    <input type="text" class="form-control" ng-model = "email" placeholder="EMAIL" autofocus>
-                </div>
-                <br>
-                <div class="input-group">
-                    <input type="text" class="form-control" ng-model = "company" placeholder="COMPANY" autofocus>
-                </div>
-                <br>
-                <div class="input-group">
-                    <input type="text" class="form-control" ng-model = "username1"placeholder="USERNAME" autofocus>
-                </div>
-                <br>
-                <div class="input-group">
-                    <input type="password" class="form-control" ng-model = "password1" placeholder="PASSWORD">
-                </div>
-                <br>
-                <div class="input-group">
-                    <input type="password" class="form-control" placeholder="CONFIRM PASSWORD">
-                </div>
-                <label class="login">
-                    <a class="btn btn-theme-register" type="submit" ng-click="register(first_name, last_name, email, username1, password1)"> REGISTER</a>
-                </label>
-                <div class="loginstatus">
-                    <p class="text-center">{{ registerStatus }}</p>
-                </div>
-                <div class="registration">
-                    <a class="registration" href="#">
-                        MEMBER LOG IN
-                    </a>
-                </div>
-            </div>
-        </div>-->
-    </section>
-</section>
+</div>
+
+<div class="container" ui-view>
+</div>

@@ -23,6 +23,7 @@ body {
 
 /* Row vertical spacers */
 .top5 { margin-top:5px; }
+.top-5 { margin-top:-5px; }
 .top7 { margin-top:7px; }
 .top10 { margin-top:10px; }
 .top15 { margin-top:15px; }
@@ -4735,4 +4736,31 @@ raty > img {
     height: 20px;
     width: 20px;
     margin-top: 1%;
+}
+
+.recommenu-navbar{
+    background-color: #293336;
+
+}
+
+.recommenu-navbar > .container > .navbar-header > a,
+.recommenu-navbar > .container > .navbar-collapse > ul > li > a{
+    color: #eceeee;
+}
+
+.recommenu-navbar .container > .navbar-collapse > .active >  a, .navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a{
+    background-color: #293336;
+    color: #68b7cd !important;
+}
+
+.recommenu-navbar .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus{
+    background-color: #293336;
+    color: #68b7cd;
+}
+
+
+.recommenu-modal-header{
+    background: #293336;
 }

@@ -39,7 +39,9 @@ angular.module('recommenuClientDashApp')
                             function(userInfo) {
                                 console.log('Successful profile get');
                                 console.log(userInfo.user);
+
                                 $scope.profileInfo['first_name'] = userInfo.user.first_name;
+                                console.log($scope.profileInfo['last_name']);
                                 $scope.profileInfo['last_name'] = userInfo.user.last_name;
                                 $window.sessionStorage.company_uri = userInfo.company;
                                 Restangular.one($window.sessionStorage.company_uri).get().then(

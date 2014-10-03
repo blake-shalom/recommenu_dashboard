@@ -8,8 +8,10 @@
  * Controller of the recommenuClientDashApp
  */
 angular.module('recommenuClientDashApp')
-  .controller('Reviewsctrl', function ($scope, $state, $compile, Menuservice) {
 
+  .controller('Reviewsctrl', function ($scope, $state, $compile, Menuservice, $window) {
+        $scope.profileInfo['first_name'] = $window.sessionStorage.firstName;
+        $scope.profileInfo['last_name'] = $window.sessionStorage.lastName;
         // get a list of menus for the logged in user
         $scope.responseSuccess = false;
         $scope.pageLoading = true;
