@@ -8,39 +8,37 @@
  * Controller of the recommenuClientDashApp
  */
 angular.module('recommenuClientDashApp')
-  .controller('Reviewsctrl', function ($scope, $state, $compile, Menuservice, Restangular, Dashboardservice, $window) {
+  .controller('Reviewsctrl', function ($scope, $state, $compile, Menuservice) {
+
         // get a list of menus for the logged in user
-        $scope.portion1 = "width: 50%";
-        $scope.spice1 = "width: 50%";        
-        $scope.salt1 = "width: 50%";
-        $scope.comment = "I like this food.  Really long text about food. Really long text about food. Really long text about food. Really long text about food. Really long text about food. Really long text about food. Really long text about food. Really long text about food. Really long text about food.";
-        $scope.username = "Jake";
-        $scope.date_posted = "07/06/2014"
-        $scope.score = "3";
+        $scope.responseSuccess = false;
+        $scope.pageLoading = true;
 
-
-
-        Menuservice.menuList().then(
+        Menuservice.sections().then(
             function(data){
-                console.log(data[0].name);
-                $scope.menus = data;
-                $scope.menus_meta = data.metadata;
+                $scope.sectionList = data;
+                $scope.sections_meta = data.metadata;
             },
             function(res){
                 console.log("failed menu-list get", res.status);
             }
         );
 
-        Menuservice.review().then(
+        var getReviews = function(){
+            Menuservice.review().then(
             function(data){
                 $scope.reviews = data;
                 $scope.total_reviews = data.metadata.total_count;
-
+                $scope.pageLoading = false;
 
             },
             function(res){
                 console.log("Could not retrieve reviews", res.status);
             });
+        };
+
+        getReviews();
+
 
         $scope.newMenu = function() {
             $state.go('dashboard.notifications.newmenu');
@@ -61,9 +59,6 @@ angular.module('recommenuClientDashApp')
         $scope.select = function () {
             $scope.list.push('1')
         };
-
-
-
 
         $scope.removeDish = function(event){
             console.log("Removing Dish Card");
@@ -96,55 +91,99 @@ angular.module('recommenuClientDashApp')
         };
 
 
-        $scope.popup1 = function(review){
-            console.log("review: ", review);
-            setid(review);
-            console.log("re: ", re);
+        $scope.popup1 = function(reviewid){
+            console.log("review: ", reviewid);
+            //setid(review);
+            var str1 = "pop";
+            var divID = str1.concat(reviewid);
+
+            if($(divID).length == 0){
+                console.log("doesnt exists: ", divID);}
+
+            if($('pop7').length == 0){
+                    console.log("doesnt exists: ", divID);}
+
+
+
+            console.log("divID: ", divID);
+            var docHeight = $(document).height(); //grab the height of the page
+            var scrollTop = $(window).scrollTop();
+            /*
+            $('pop7').show().css({'height' : docHeight}); //display your popup and set height to the page height
+            $('pop7').removeClass('hidden');
+            $('pop7').addClass('nothidden');
+            $('.overlay-content2').css({'top': scrollTop+20+'px'}); //set the content 20px from the window top
+            */
+        };
+
+
+
+        $scope.passReivewID = function(x){
+            $scope.clickedit = true;
+            $scope.reviewIDPassed = x;
+
             var docHeight = $(document).height(); //grab the height of the page
             var scrollTop = $(window).scrollTop();
             $('.overlay-bg2').show().css({'height' : docHeight}); //display your popup and set height to the page height
-            $('.overlay-content2').css({'top': scrollTop+20+'px'}); //set the content 20px from the window top
-            };
+            $('.overlay-content2').css({'top': scrollTop-200+'px'});
+            $('.overlay-content2').css({'margin-left': -200+'px'});
 
-        var setid = function(id){
-            re = id;
-        }
 
-        var getid = function(){
-            return re;
-        }
 
-        var setname = function(n){
-            $scope.nameR = n;
-            console.log("n: ", n);
-        }
+        };
 
         $scope.setResponse = function(name, comment, reviewid){
-            var b = getid();
-            console.log("b: ", b)
-            console.log("setrespone: ", name , " : ", comment, " : ", reviewid);
-            setname(name);
 
-            $('.overlay-bg2').hide();
+            //error checking
+            if(!name && !comment){
+                $scope.response = "Please fill out the form.";  
+            }
+            else if(!name){
+                $scope.response = "Please fill out your name.";  
+                console.log("no name");
+            }
+            else if(!comment){
+                $scope.response = "Please fill out the comment.";  
+            }   
 
-            /*
-            Menuservice.testing(name, comment).then(
-            function(data){
-                console.log("setResponse: Success!");
-            },
-            function(res){
-                console.log("Could not retrieve reviews", res.status);
-            });
-            */
+            //user filled out the form
+            else{
+                $scope.clickedit = false;
+                console.log("setrespone: ", name , " : ", comment, " : ", reviewid);
+                var d = new Date();
+                var date = d.toISOString();
 
-            $scope.uname = "";
-            $scope.ucomment = "";
+                $('.overlay-bg2').hide();
+
+                
+                Menuservice.brandResponse(name, comment, reviewid, date).then(
+                function(data){
+                    console.log("setResponse: Success!");
+                    $scope.responseSuccess = true;
+                    $scope.responseMessage = "Your response was sent successfully!";
+                    console.log("Reloading Reviews");
+                    getReviews();
+                },
+                function(res){
+                    console.log("Could not retrieve reviews", res.status);
+                    $scope.responseMessage = "Sorry, your response was unsuccessfully! "+res.status;
+                });
+                
+
+                $scope.uname = "";
+                $scope.ucomment = "";
+            }
 
             
         }
 
+        $scope.closeResponseSuccess = function(){
+            $scope.responseSuccess = false;
+        }
+
 
         // hide popup when user clicks on close button
+
         $('.close-btn2').click(function(){
         $('.overlay-bg2').hide(); // hide the overlay
             });

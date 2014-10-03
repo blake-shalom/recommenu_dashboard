@@ -20,29 +20,45 @@ angular.module('recommenuClientDashApp')
                 console.log('Could not reach company detail endpoint');
             }
         );
-        console.log('COMPANY ID: ' + $window.sessionStorage.company_id);
         return {
             menuList: function(){
-                console.log('api/v1/menus/?company=' + $window.sessionStorage.company_id);
                 return Restangular.one('api/v1/menus/?company=' + $window.sessionStorage.company_id).getList();
             },
             review: function(){
-                return Restangular.all('/api/v1/recommendations/?format=json').getList();
-                //return Restangular.all('/api/v1/recommendations/?entry__section__menu__company=' + $window.sessionStorage.company_id).getList();
+                //return Restangular.all('/api/v1/recommendations/?format=json').getList();
+                return Restangular.all('/api/v1/recommendations/?approved=1&entry__section__menu__company=' + $window.sessionStorage.company_id).getList();
             },
             userloc: function(user_location){
                 return Restangular.all(user_location).get();
             },
 
             menuDetail: function(menuId){
-                console.log('Getting Detail for' + menuId);
                 return Restangular.one('api/v1/menus/' + menuId).get();
                 },
-
-            testing: function(name, commente){
+            sections: function(menuId){
+                return Restangular.one('api/v1/sections/?menu__company=' + $window.sessionStorage.company_id).getList();
+            },
+            reviewDetail: function(entryId){
+                return Restangular.one('/api/v1/recommendations/?approved=1&entry=' + entryId).getList();
+            },
+            brandResponse: function(name, commente, reviewid, date){
                 console.log('testing the menuservice');
-                //var s = JSON.stringify({responder: name, comoment: comment});
+                console.log("here: ",name," : ", commente," : ", reviewid," : ", date);
+                //var s = JSON.stringify({responder: name, comment: comment});
                 //return Restangular.all('api/v1/brand_responses').post(s);
+                
+                //create recommendation uri
+                var recom = "/api/v1/recommendations/";
+                var recomF = recom.concat(reviewid);
+                recomF = recomF.concat("/");
+                console.log("recomF: ", recomF);
+ 
+                var companyF = "/api/v1/companies/1/";
+
+                var payload = JSON.stringify({company: companyF, recommendation: recomF, responder:name, date_posted:date, comment:commente});
+                console.log(payload);
+
+
                 var call = $http({
                     method: 'POST',
                     url: 'http://tranquil-plateau-8131.herokuapp.com/api/v1/brand_responses/',
@@ -50,18 +66,19 @@ angular.module('recommenuClientDashApp')
                         responder: name, date_posted :"2014-10-10T16:49:26.837659", 
                         comment: commente})
                     */
-                    {"company": "/api/v1/companies/1/", "recommendation":"/api/v1/recommendations/19/", "responder":"Bob's American Grille", "date_posted":"2014-10-10T16:49:46.837659", "comment":"Freddie, that sounds like a great strategy! Glad you enjoyed the dish!"}
+                    // {"company": "/api/v1/companies/1/", "recommendation":"/api/v1/recommendations/19/", "responder":"Bob's American Grille", "date_posted":"2014-10-10T16:49:46.837659", "comment":"Freddie, that sounds like a great strategy! Glad you enjoyed the dish!"}
+                    payload
                 })
                 call.success(function (data, status, headers, config) {
-                    console.log("deny call: success");
+                    console.log("Brand Response: success");
 
                 })
                 call.error(function (data, status, headers, config){
-                    console.log('deny call: error');
+                    console.log('Brand Response: error');
 
                 });
-                return call;     
+                return call;    
             }
 
-                };
+                }
   });
