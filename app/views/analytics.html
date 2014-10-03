@@ -98,7 +98,8 @@
                                                 <button class = "btn done-btn" ng-model="clickedit" ng-click="passReivewID(review.id)"> RESPOND </button>
                                             </div>
                                             <div class="pull-right top15">
-                                                <a class = "btn fa fa-twitter" target=_"blank" href="http://twitter.com/home?status='{{review.comment}}' from {{review.user.user.username}} via @GetRecommenu%20">Share on Twitter</a>
+                                                <button class="btn fa fa-twitter" ng-click="postTweet()">Share on Twitter</button>
+                                                <!--<a class = "btn fa fa-twitter" target=_"blank" href="http://twitter.com/home?status='{{review.comment}}' from {{review.user.user.username}} via @GetRecommenu%20">Share on Twitter</a>-->
                                                 <!--<button class="btn fa fa-facebook"></button>-->
                                             </div>
 

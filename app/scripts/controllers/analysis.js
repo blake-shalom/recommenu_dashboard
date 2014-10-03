@@ -9,7 +9,7 @@
  */
 angular.module('recommenuClientDashApp')
 
-  .controller('AnalysisCtrl', function ($scope, Menuservice) {
+  .controller('AnalysisCtrl', function ($scope, Menuservice, twitter, $window) {
 
         $scope.pageLoading = true;
         $scope.reviews = {};
@@ -110,6 +110,43 @@ angular.module('recommenuClientDashApp')
         $scope.donutOptions = {
             percentageInnerCutout : 70,
             animateRotate : false
+        };
+
+
+        $scope.postTweet = function(){
+            if(!$window.requestToken){
+                // get a new request token if one doesn't exist, use request token in access_token call if it does exist
+                twitter.requestToken().then(
+                    function(data){
+                        if(data.oauth_callback_confirmed == true){
+                            $window.requestToken = data.oauth_token;
+                            $window.requestTokenSecret = data.oauth_token_secret;
+
+                            // plug token into access_token call
+                            twitter.authenticate($window.requestToken).then(
+                                function(data){
+                                    console.log("AUTHENTICATED CORRECTLY");
+                                },
+                                function(res){
+                                    console.log(res);
+                                    console.log("FAILED ON TWITTER STEP 2");
+                                }
+                            )
+                        }
+                        else{
+                            console.log("oauth callback was false");
+                        }
+                    },
+                    function(res){
+                        console.log("could not get request token for Twitter");
+                        console.log(res);
+                    }
+                );
+
+            }else{
+                console.log("POSTED TWEET");
+            }
+
         };
 
 
