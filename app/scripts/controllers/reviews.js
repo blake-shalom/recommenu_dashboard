@@ -12,19 +12,23 @@ angular.module('recommenuClientDashApp')
   .controller('Reviewsctrl', function ($scope, $state, $compile, Menuservice, $window) {
         $scope.profileInfo['first_name'] = $window.sessionStorage.firstName;
         $scope.profileInfo['last_name'] = $window.sessionStorage.lastName;
+        console.log($scope.profileInfo['first_name'], $scope.profileInfo['last_name']);
         // get a list of menus for the logged in user
         $scope.responseSuccess = false;
         $scope.pageLoading = true;
 
-        Menuservice.sections().then(
-            function(data){
-                $scope.sectionList = data;
-                $scope.sections_meta = data.metadata;
-            },
-            function(res){
-                console.log("failed menu-list get", res.status);
-            }
-        );
+        var getSections = function() {
+            Menuservice.sections().then(
+                function (data) {
+                    $scope.sectionList = data;
+                    $scope.sections_meta = data.metadata;
+                },
+                function (res) {
+                    console.log("failed menu-list get", res.status);
+                    getSections();
+                }
+            );
+        };
 
         var getReviews = function(){
             Menuservice.review().then(
@@ -36,8 +40,10 @@ angular.module('recommenuClientDashApp')
             },
             function(res){
                 console.log("Could not retrieve reviews", res.status);
+                getReviews();
             });
         };
+        getSections();
 
         getReviews();
 

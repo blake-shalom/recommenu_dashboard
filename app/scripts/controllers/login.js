@@ -50,13 +50,14 @@ angular.module('recommenuClientDashApp')
                                 );
                                 console.log($window.sessionStorage.company_uri);
                                 console.log($scope.profileInfo['first_name']);
+                                $state.go('dashboard.Reviews');
 
                             },
                             function(res){
                                 console.log('failed profile get', res.status);
                             });
                         $.backstretch("../images/clear.png", {speed: 0});
-                        $state.go('dashboard.Reviews');
+
                     },
                     function(res){
                         console.log('failed login', res.status);
