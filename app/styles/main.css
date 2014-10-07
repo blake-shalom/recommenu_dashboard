@@ -5,7 +5,7 @@ body {
     color: #797979;
     background: #f8f9f9;
     font-family: 'Open Sans', sans-serif;
-
+    padding: 0px !important;
     margin: 0px !important;
     font-size:13px;
     overflow-x:hidden;
@@ -37,6 +37,10 @@ body {
 
 .top15p{
     margin-top: 15%;
+}
+
+.top10p{
+    margin-top: 10%;
 }
 
 .left30{
@@ -4772,3 +4776,93 @@ hr{
     border-top: 1px solid #eceeee;
 }
 
+
+
+/*member login  V2*/
+
+.member-login2 .form-panel{
+    background: #DCDCDC;
+    color: black;
+    width: 320px;
+    margin-left: 10%;
+    height: 256px;
+    box-shadow: none;
+}
+
+.member-login2 .form-panel .input-group {
+    background: #330066;
+    border-color: white;
+    margin-left: 7%;
+    /* margin-bottom: 5%; */
+    width: 256px;
+    height: 32px;
+    display: block;
+}
+
+.member-login2 .form-panel .icon-key{
+    text-align: center;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    width: 16;
+    height: 20;
+}
+
+.member-login2 .form-panel > select {
+    text-align: center;
+}
+
+.member-login2 .form-panel .registration {
+    /* margin-top: 5%; */
+    margin-bottom: 5%;
+    text-align: center;
+    /* font-weight: bold; */
+    text-decoration: underline;
+    color: #000;
+}
+
+.member-login2 .form-panel .input-group .form-control {
+    text-align: center;
+    font-weight: bold;
+    font-size: 12pt;
+
+}
+
+.member-login2 .form-panel > label {
+    margin-top: 5%;
+    margin-bottom: 5%;
+    display: block;
+    text-align: center;
+    font-weight: bold;
+}
+
+.btn-theme-login2 {
+    color: #fff;
+    background-color: #000;
+    border-color: #000;
+    width: 256px;
+    height: 32px;
+    text-align: center;
+    /* margin-left: -5%; */
+
+}
+.btn-theme-login2:hover,
+.btn-theme-login2:focus,
+.btn-theme-login2:active,
+.btn-theme-login2.active,
+.open .dropdown-toggle.btn-theme-login2 {
+    color: #fff;
+    background-color: #000;
+    border-color: #000;
+
+}
+
+.recom-log{
+    margin-bottom: 5%;
+}
+
+.dash-text{
+    font-size: 12pt;
+    font: avenir medium;
+    color: #000;
+    margin-bottom: 10%;
+}
