@@ -60,8 +60,8 @@ angular.module('recommenuClientDashApp')
                             datasets: [
                                 {
                                     label: "Views",
-                                    fillColor: "rgba(151,187,205,0.2)",
-                                    strokeColor: "rgba(151,187,205,1)",
+                                    fillColor: "#6abcd6",
+                                    strokeColor: "#5ca0b1",
                                     pointColor: "rgba(151,187,205,1)",
                                     pointStrokeColor: "#fff",
                                     pointHighlightFill: "#fff",
@@ -92,24 +92,29 @@ angular.module('recommenuClientDashApp')
             datasets: [
                 {
                     label: "Views",
-                    fillColor: "rgba(151,187,205,0.2)",
-                    strokeColor: "rgba(151,187,205,1)",
+                    fillColor: "#6abcd6",
+                    strokeColor: "#5ca0b1",
                     pointColor: "rgba(151,187,205,1)",
                     pointStrokeColor: "#fff",
-                    pointHighlightFill: "#fff",
-                    pointHighlightStroke: "rgba(151,187,205,1)",
+                    pointHighlightFill: "#6abcd6",
+                    pointHighlightStroke: "#5ca0b1",
                     data: [getRandomInt(25, 75), getRandomInt(25, 75), getRandomInt(25, 75), getRandomInt(25, 75),
                            getRandomInt(25, 75), getRandomInt(25, 75), getRandomInt(25, 75)]
                 }
             ]
         };
         $scope.lineOptions = {
-            animation: false
+           // responsive: true,
+            animation: false,
+            pointDot : false,
+            bezierCurve : false,
+            datasetStrokeWidth : 5
         };
 
         $scope.donutOptions = {
             percentageInnerCutout : 70,
             animateRotate : false
+            //responsive: true
         };
 
 
