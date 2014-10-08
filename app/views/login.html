@@ -16,10 +16,17 @@
         </div>
     </div>
 </div>
-<div class="col-lg-4 col-lg-offset-4 member-login top15p" role="form">
+<div class = "col-lg-4 col-lg-offset-4 recom-log top10p" >
+    <p class="centered"><a><img src="/images/Recommenu_wordmark-04.png" class="img" width="255" height = "42"></a></p>
+    <p class = "centered"> <b class = "dash-text"> DASHBOARD </b> </p>
+    <!--
+    <p class="centered"><a><img src="https://s3-us-west-2.amazonaws.com/recommenu-media/logo-pictures/Recommenu_icon_180.png" class="img-circle" width="80"></a></p>
+-->
+    </div>
+<div class="col-lg-4 col-lg-offset-4 member-login2" role="form">
         <div class="form-panel pull-left ">
-            <p class="icon-circle"><i class="fa fa-user"></i></p>
-            <label>MEMBER LOGIN</label>
+            <p class="icon-key"><i class="fa fa-key"></i></p>
+            <!-- <label>MEMBER LOGIN</label> -->
             <div class="input-group">
                 <input type="text" class="form-control" placeholder="Username" ng-model = "username" autofocus>
             </div>
@@ -27,12 +34,14 @@
             <div class="input-group">
                 <input type="password" class="form-control" ng-model = "password" placeholder="Password">
             </div>
-            <label class="login">
-                <button class="btn btn-theme-login" type="submit" ng-click="signIn(username, password)"> LOG IN</button>
+            <label class="login2">
+                <button class="btn btn-theme-login2" type="submit" ng-click="signIn(username, password)"> LOG IN</button>
             </label>
+            <!--
             <div class="loginstatus">
                 <p class="text-center">{{ loginStatus }}</p>
             </div>
+        -->
             <div class="registration">
                 <a class="registration" href="#" data-toggle="modal" data-target="#myModal">
                     FORGOT PASSWORD
