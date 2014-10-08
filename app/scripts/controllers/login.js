@@ -10,7 +10,6 @@
 angular.module('recommenuClientDashApp')
   .controller('LoginCtrl', function ($scope, $state, Restangular, $window, Dashboardservice,
                                      Userservice, Authenticationservice, $location) {
-        $.backstretch("../images/login-background.png", {speed: 500});
         $scope.profileInfo = {};
         $scope.content1 = 'Thank you for registering to the Recommenu Dashboard! Please Check your ' +
             'emaifl for a confirmation request with a link that will confirm your account. Once you ' +
@@ -56,7 +55,7 @@ angular.module('recommenuClientDashApp')
                             function(res){
                                 console.log('failed profile get', res.status);
                             });
-                        $.backstretch("../images/clear.png", {speed: 0});
+
 
                     },
                     function(res){
