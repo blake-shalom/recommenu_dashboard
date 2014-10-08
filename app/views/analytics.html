@@ -1,21 +1,27 @@
 <div>
-    <!--    Loading Animation   -->
-    <div class="pull-right">
-        <div class="spinner" ng-show="pageLoading">
-            <div class="double-bounce1"></div>
-            <div class="double-bounce2"></div>
+
+
+
+
+
+         <br/><br/>
+    <div class="row">
+        <div class="col-sm-2 col-sm-offset-5">
+            <!--    Loading Animation   -->
+            <div class="spinner center-block" ng-show="pageLoading">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+            </div>
         </div>
-    </div>
-    <div class=" top110 bot15 message-p pn right10 left10">
-        <div class="message-header">
-            <div ng-repeat="menu in menuList">
+        <div class="col-sm-10 col-sm-offset-1" ng-show="!pageLoading">
+            <div ng-repeat="menu in menuList" ng-show="!pageLoading">
                     <span ng-repeat="section in menu.sections">
                         <a ng-href="#/dashboard/analytics#{{section.name}}">{{section.name}}&nbsp;&nbsp;&nbsp;&nbsp;</a>
                     </span>
             </div>
+
         </div>
-        <div class="panel-body catch-overflow" >
-         <br/><br/>
             <div class="col-lg-10 col-lg-offset-1 bot15">
               <div ng-repeat="menu in menuList">
                   <div ng-repeat="section in menu.sections" ng-init="sectionshow = true">
@@ -26,8 +32,21 @@
                       </h3>
                           <hr/></div>
                       <div ng-show="sectionshow">
-                <div ng-repeat="entry in section.entries"  ng-init="id = entry.id; show = false" class="content-panel right-80 left-80 bot15">
-                    <div class="panel-body">
+                <div ng-repeat="entry in section.entries"  ng-init="id = entry.id; show = false; entryShow=false" class="content-panel right-80 left-80 bot15">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <h4>{{entry.name}}</h4>
+                            </div>
+                            <div class="col-xs-1 col-xs-offset-5">
+                                <a ng-click="entryShow = !entryShow"><i class="fa fa-plus-square fa-2x"></i></a>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="panel-body" ng-show="entryShow">
+                        <hr/>
                         <div class="col-lg-3">
                             <h4>{{entry.name}}</h4>
                                 <canvas doughnutchart options="donutOptions" data="entry.donut" width="200" height="200"></canvas>
@@ -114,5 +133,5 @@
                       </div><!-- section -->
               </div>
             </div>
-    </div>
-</div></div></div>
+    </div></div>
+</div>
