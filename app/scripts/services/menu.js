@@ -31,7 +31,7 @@ angular.module('recommenuClientDashApp')
             userloc: function(user_location){
                 return Restangular.all(user_location).get();
             },
-m
+
             menuDetail: function(menuId){
                 return Restangular.one('api/v1/menus/' + menuId).get();
                 },
