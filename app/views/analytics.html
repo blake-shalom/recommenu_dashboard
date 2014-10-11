@@ -1,6 +1,5 @@
 <div>
-
-         <br/><br/>
+    <br/><br/>
     <div class="row">
         <div class="col-sm-2 col-sm-offset-5">
             <!--    Loading Animation   -->
@@ -11,182 +10,172 @@
             </div>
         </div>
         <div class="col-sm-10 col-sm-offset-1" ng-show="!pageLoading">
+            <!--
             <div ng-repeat="menu in menuList" ng-show="!pageLoading">
-                    <span ng-repeat="section in menu.sections">
-                        <a ng-href="#/dashboard/analytics#{{section.name}}">{{section.name}}&nbsp;&nbsp;&nbsp;&nbsp;</a>
-                    </span>
+                <span ng-repeat="section in menu.sections">
+                    <a ng-href="#/dashboard/analytics#{{section.name}}">{{section.name | uppercase}}&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                </span>
             </div>
-
+            -->
         </div>
             <div class="col-lg-10 col-lg-offset-1 bot15">
-              <div ng-repeat="menu in menuList">
-                  <div ng-repeat="section in menu.sections" ng-init="sectionshow = true">
-                      <div class="left-80 right-80"><h3 class="text-left" id="{{section.name}}">{{section.name}}
-                          <a ng-click=" sectionshow = !sectionshow" ng-show="sectionshow == true" class="pull-right"><i class="fa fa-arrow-right"></i></a>
-                          <a ng-click=" sectionshow = !sectionshow" ng-show="sectionshow == false" class="pull-right"><i class="fa fa-arrow-down"></i></a>
-                      </h3>
-                          <hr/></div>
-                      <div ng-show="sectionshow">
-                <div ng-repeat="entry in section.entries"  ng-init="id = entry.id; show = false; entryShow=false" class="content-panel right-80 left-80 bot15">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-6">
-                                <h4>{{entry.name}}</h4>
-                            </div>
-                            <div class="col-xs-1 col-xs-offset-5">
-                                <span ng-click="entryShow = !entryShow"><i ng-show="entryShow == false" class="fa fa-plus-square fa-2x"></i></span>
-                                <span ng-click="entryShow = !entryShow"><i ng-show="entryShow == true" class="fa fa-minus-square fa-2x"></i></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="panel-body" ng-show="entryShow">
-                        <hr/>
-                        <div class="col-sm-6">
-                            <div class="col-sm-12">
-                                <h5 class="pull-left"><b>AVERAGE STAR RATING</b></h5><br/>
-                                <!--<div><h4>{{entry.star_average}}</h4></div>-->
-                                <raty class="center-block top15 bot15" id="star{{$index}}" score="{{entry.star_average | number:1}}" number="5"></raty>
-                            </div>
-                            <div class="col-sm-12">
-                                <h5><b>STAR BREAKDOWN</b></h5>
-                                <canvas class="center-block" donutchart options="donutOptions" data="entry.donut" width="200" height="200"></canvas>
-                            </div>
-                            <div class="col-sm-12">
-                                <h5><b>AVERAGE QUALITY RATING</b></h5>
-                                <div class="showback">
-                                    <div class="progress" ng-repeat="slider_template in entry.slider_templates">
-                                        <div class="progress-bar progress-bar-success" role="progressbar"
-                                             aria-valuenow="" aria-valuemin="0"
-                                             aria-valuemax="100" style="width: {{slider_template.average_score}}%">
-                                            {{slider_template.category}}
-                                        </div>
-                                    </div>
-
-
-                                </div><!--/showback -->
-                            </div>
-
-
-
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="col-sm-12">
-                                <h5><b>NUMBER OF REVIEWS</b></h5>
-
-                                <canvas linechart  options="lineOptions" data="entry.chart" width="500" height="400"></canvas>
-
-                            </div>
-                        </div>
-
-                        <div class="col-sm-12">
-                            <span class="pull-right" ng-click="showReviews(entry.id); show = !show">
-                                <h5 ng-show="!show">SEE REVIEWS <i class="fa fa-plus-square"></i></h5>
-                                <h5 ng-show="show">HIDE REVIEWS <i class="fa fa-minus-square"></i></h5>
-                            </span>
-                        </div>
-
-
-                        <div class="col-sm-10 col-sm-offset-1 ">
-                        <div id="entry.name" ng-show="show">
+                <div ng-repeat="menu in menuList">
+                    <div ng-repeat="section in menu.sections" >
+                        <div class="left-80 right-80">
+                            <h3 class="text-left" id="{{section.name}}">{{section.name | uppercase}}
+                            </h3>
                             <hr/>
-                            <div ng-repeat="review in reviews[id]">
-                                <div class="panel-body">
-                                    <div class="col-sm-2">
-                                        <i class=" fa  fa-user"></i>
-                                        <div>
-                                            <p><a href=""></a> {{review.user.user.username}}</p>
-                                            <p>{{review.date_posted | date: 'mediumDate'}}</p>
-                                            <p>{{review.date_posted | date: 'shortTime'}}</p>
+                        </div>
+                        <div>
+                            <div ng-repeat="entry in section.entries"  ng-init="id = entry.id; show = false; entryShow=false" class="content-panel right-80 left-80 bot15">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <h4>{{entry.name | uppercase}}</h4>
                                         </div>
-                                        <button class = "btn btn-sm send-btn">
-                                            <a href="mailto:{{review.user.user.email}}?Subject=Responding%20too%20your%20comment.">
-                                                <i class="fa fa-envelope"></i> EMAIL
-                                            </a>
-                                        </button>
+                                        <div class="col-xs-1 col-xs-offset-5">
+                                            <span ng-click="entryShow = !entryShow"><i ng-show="entryShow == false" class="fa fa-plus-square fa-2x"></i></span>
+                                            <span ng-click="entryShow = !entryShow"><i ng-show="entryShow == true" class="fa fa-minus-square fa-2x"></i></span>
+                                        </div>
                                     </div>
-                                    <div class = "col-sm-7">
-                                        <div class="row top5">
-                                            <div class="col-sm-3"><b>Meal:</b></div>
-                                            <div class="col-sm-9">{{review.entry.name}}</div>
-                                        </div>
-                                        <div class="row top5">
-                                            <div class="col-sm-3"><b>Title: </b></div>
-                                            <div class="col-sm-9">{{review.title}}</div>
-                                        </div>
-                                        <div class="row top5">
-                                            <div class="col-sm-3"><b>Score: </b></div>
-                                            <div class="col-sm-9">
-                                                <raty class="top5" id="star{{$index}}" score="{{review.stars | number:1}}" number="5"></raty>
+                                </div>
+                            <div class="panel-body" ng-show="entryShow">
+                                <hr/>
+                                <div class="col-sm-6">
+                                    <div class="col-sm-12">
+                                        <h5 class="pull-left"><b>AVERAGE STAR RATING</b></h5><br/>
+                                        <!--<div><h4>{{entry.star_average}}</h4></div>-->
+                                        <raty class="center-block top15 bot15" id="star{{$index}}" score="{{entry.star_average | number:1}}" number="5"></raty>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <h5><b>STAR BREAKDOWN</b></h5>
+                                        <canvas class="center-block" donutchart options="donutOptions" data="entry.donut" width="200" height="200"></canvas>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <h5><b>AVERAGE QUALITY RATING</b></h5>
+                                        <div class="showback">
+                                            <div class="progress" ng-repeat="slider_template in entry.slider_templates">
+                                                <div class="progress-bar progress-bar-success" role="progressbar"
+                                                     aria-valuenow="" aria-valuemin="0"
+                                                     aria-valuemax="100" style="width: {{slider_template.average_score}}%">
+                                                    {{slider_template.category}}
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="row top5">
-                                            <div class="col-sm-3"><b>Comments: </b></div>
-                                            <div class="col-sm-9">
-                                                {{review.comment}}<br/>
-                                                <a class = "btn btn-sm send-btn" target=_"blank" href="http://twitter.com/home?status='{{review.comment}}' from {{review.user.user.username}} via @GetRecommenu%20">
-                                                    <i class="fa fa-twitter"></i> SHARE
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="row top5">
-                                            <div class="col-sm-3"><b>Quality: </b></div>
-                                            <div class="col-sm-9">
-                                                <div class="showback">
-                                                    <div class="progress" ng-repeat="slider_template in review.entry.slider_templates">
-                                                        <div class="progress-bar progress-bar-success" role="progressbar"
-                                                             aria-valuenow="" aria-valuemin="0"
-                                                             aria-valuemax="100" style="width: {{slider_template.average_score}}%">
-                                                            {{slider_template.category}}
+                                        </div><!--/showback -->
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="col-sm-12">
+                                        <h5><b>NUMBER OF REVIEWS</b></h5>
+                                        <canvas linechart  options="lineOptions" data="entry.chart" width="500" height="400"></canvas>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <span class="pull-right" ng-click="showReviews(entry.id); show = !show">
+                                        <h5 ng-show="!show">SEE REVIEWS <i class="fa fa-plus-square"></i></h5>
+                                        <h5 ng-show="show">HIDE REVIEWS <i class="fa fa-minus-square"></i></h5>
+                                    </span>
+                                </div>
+                                <div class="col-sm-10 col-sm-offset-1 ">
+                                    <div id="entry.name" ng-show="show">
+                                        <hr/>
+                                        <div ng-repeat="review in reviews[id]">
+                                            <div class="panel-body">
+                                                <div class="col-sm-2">
+                                                    <i class=" fa  fa-user"></i>
+                                                    <div>
+                                                        <p><a href=""></a> {{review.user.user.username}}</p>
+                                                        <p>{{review.date_posted | date: 'mediumDate'}}</p>
+                                                        <p>{{review.date_posted | date: 'shortTime'}}</p>
+                                                    </div>
+                                                    <button class = "btn btn-sm send-btn">
+                                                        <a href="mailto:{{review.user.user.email}}?Subject=Responding%20too%20your%20comment.">
+                                                            <i class="fa fa-envelope"></i> EMAIL
+                                                        </a>
+                                                    </button>
+                                                </div>
+                                                <div class = "col-sm-7">
+                                                    <div class="row top5">
+                                                        <div class="col-sm-3"><b>Meal:</b></div>
+                                                        <div class="col-sm-9">{{review.entry.name}}</div>
+                                                    </div>
+                                                    <div class="row top5">
+                                                        <div class="col-sm-3"><b>Title: </b></div>
+                                                        <div class="col-sm-9">{{review.title}}</div>
+                                                    </div>
+                                                    <div class="row top5">
+                                                        <div class="col-sm-3"><b>Score: </b></div>
+                                                        <div class="col-sm-9">
+                                                            <raty class="top5" id="star{{$index}}" score="{{review.stars | number:1}}" number="5"></raty>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row top5">
+                                                        <div class="col-sm-3"><b>Comments: </b></div>
+                                                        <div class="col-sm-9">
+                                                            {{review.comment}}<br/>
+                                                            <a class = "btn btn-sm send-btn" target=_"blank" href="http://twitter.com/home?status='{{review.comment}}' from {{review.user.user.username}} via @GetRecommenu%20">
+                                                                <i class="fa fa-twitter"></i> SHARE
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row top5">
+                                                        <div class="col-sm-3"><b>Quality: </b></div>
+                                                        <div class="col-sm-9">
+                                                            <div class="showback">
+                                                                <div class="progress" ng-repeat="slider_template in review.entry.slider_templates">
+                                                                    <div class="progress-bar progress-bar-success" role="progressbar"
+                                                                         aria-valuenow="" aria-valuemin="0"
+                                                                         aria-valuemax="100" style="width: {{slider_template.average_score}}%">
+                                                                        {{slider_template.category}}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- brand responses -->
+                                                    <h5 class="pull-left">
+                                                        <a ng-click=" showResponses = !showResponses" ng-show="showResponses == true" class="pull-right">
+                                                            <i class="fa fa-arrow-right"></i><b> Hide Responses:</b>
+                                                        </a>
+                                                        <a ng-click=" showResponses = !showResponses" ng-show="showResponses == false" class="pull-right">
+                                                            <i class="fa fa-arrow-down"></i><b> Show Responses:</b>
+                                                        </a>
+                                                    </h5>
+                                                    <div class="col-sm-12 text-left" ng-show="showResponses == true">
+                                                        <div ng-repeat="ru in review.brand_responses">
+                                                            <div class="response-box">
+                                                                <h5>{{ru.comment}}</h5>
+                                                                <h6>{{ru.responder}}</h6>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <!-- brand responses -->
-                                        <h5 class="pull-left">
-                                            <a ng-click=" showResponses = !showResponses" ng-show="showResponses == true" class="pull-right">
-                                                <i class="fa fa-arrow-right"></i><b> Hide Responses:</b>
-                                            </a>
-                                            <a ng-click=" showResponses = !showResponses" ng-show="showResponses == false" class="pull-right">
-                                                <i class="fa fa-arrow-down"></i><b> Show Responses:</b>
-                                            </a>
-                                        </h5>
-                                        <div class="col-sm-12 text-left" ng-show="showResponses == true">
-                                            <div ng-repeat="ru in review.brand_responses">
-                                                <div class="response-box">
-                                                    <h5>{{ru.comment}}</h5>
-                                                    <h6>{{ru.responder}}</h6>
+                                                <div class="col-sm-3">
+                                                    Reply <i class="fa fa-question-circle"></i>
+                                                    <div class="form-group">
+                                                        <div class="">
+                                                            <input type="text" class="form-control"  autofocus placeholder="Name" ng-model="uname">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="">
+                                                            <textarea rows="3" class="form-control"  autofocus placeholder="Comment" ng-model="ucomment"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <button class="btn btn-sm send-btn" ng-click="setResponse(uname, ucomment, review.id)">
+                                                        <i class="fa fa-share-square-o"></i> SUBMIT
+                                                    </button>
+                                                    <h4>{{response}}</h4>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-3">
-                                        Reply <i class="fa fa-question-circle"></i>
-                                        <div class="form-group">
-                                            <div class="">
-                                                <input type="text" class="form-control"  autofocus placeholder="Name" ng-model="uname">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="">
-                                                <textarea rows="3" class="form-control"  autofocus placeholder="Comment" ng-model="ucomment"></textarea>
-                                            </div>
-                                        </div>
-                                        <button class="btn btn-sm send-btn" ng-click="setResponse(uname, ucomment, review.id)">
-                                            <i class="fa fa-share-square-o"></i> SUBMIT
-                                        </button>
-                                        <h4>{{response}}</h4>
-                                    </div>
                                 </div>
-
                             </div>
-                        </div>
-                      </div>
-                    </div>
-                </div><!-- entry -->
-                      </div><!-- section -->
-              </div>
+                        </div><!-- entry -->
+                    </div><!-- section -->
+                </div>
             </div>
-    </div></div>
+        </div>
+    </div>
 </div>

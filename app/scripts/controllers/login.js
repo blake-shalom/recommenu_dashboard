@@ -30,7 +30,7 @@ angular.module('recommenuClientDashApp')
                         $window.sessionStorage.token = data.apiKey;
                         $window.sessionStorage.id = data.id;
                         console.log("data.id: ",data.id);
-                        Restangular.setDefaultRequestParams({apiKey: $window.sessionStorage.token });
+                        //Restangular.setDefaultRequestParams({apiKey: $window.sessionStorage.token });
                         $location.path('/');  // default location after sign-in
                         Userservice.getInfo().then(
                             function(userInfo) {

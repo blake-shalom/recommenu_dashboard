@@ -22,6 +22,7 @@ angular.module('recommenuClientDashApp')
                 function (data) {
                     $scope.sectionList = data;
                     $scope.sections_meta = data.metadata;
+
                 },
                 function (res) {
                     console.log("failed menu-list get", res.status);
@@ -29,12 +30,26 @@ angular.module('recommenuClientDashApp')
                 }
             );
         };
+        $scope.getNext = function(){
+            Menuservice.getNext($scope.next).then(
+                function(data){
+                    $scope.reviews.push(data);
+                    $scope.sections_meta = data.metadata;
+                    $scope.next = data.metadata.next;
+                },
+                function(res){
+                    console.log("couldn't not get the next reviews", res.status);
+                }
 
+            )
+
+        };
         var getReviews = function(){
             Menuservice.review().then(
             function(data){
                 $scope.reviews = data;
                 $scope.total_reviews = data.metadata.total_count;
+                $scope.next = data.metadata.next;
                 $scope.pageLoading = false;
 
             },
@@ -43,7 +58,7 @@ angular.module('recommenuClientDashApp')
                 getReviews();
             });
         };
-        getSections();
+
 
         getReviews();
 
