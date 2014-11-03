@@ -49,7 +49,7 @@ angular.module('recommenuClientDashApp')
                                 );
                                 console.log($window.sessionStorage.company_uri);
                                 console.log($scope.profileInfo['first_name']);
-                                $state.go('dashboard.Reviews');
+                                $state.go('dashboard.analytics');
 
                             },
                             function(res){

@@ -16,6 +16,9 @@ angular.module('recommenuClientDashApp')
                },
         getInfo: function(){
                    return  Restangular.one('/api/v1/user_profile', $window.sessionStorage.id).get();
+                 },
+        getManager: function(){
+                    return  Restangular.one('/api/v1/user_profile/2/?format=json').get();
                  }
       };
   });
