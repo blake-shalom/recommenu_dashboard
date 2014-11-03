@@ -27,7 +27,7 @@
             </ul>
         </div>
     </div>
-    <div class="row">
+    <div class="row top30">
         <div class="header secondaryHeader" ng-show="responseSuccess">
             <div class="nav" id="top_menu">
                 <ul class="nav top-menu">
@@ -40,13 +40,13 @@
                 </ul>
             </div>
         </div>
-        <div class="col-sm-10 col-sm-offset-1" ng-show="!pageLoading">
+        <div class="col-sm-12 " ng-show="!pageLoading">
             <form class="form-inline" role="form">
-                <div class="pull-left"><b>{{total_reviews}} Total Reviews</b></div>
+                <div class="pull-left">{{total_reviews}} REVIEWS</div>
                 <div class="pull-right">
-                <b>Sort By:</b>
+                SORT BY:
                 <div class="form-group">
-                    <select class="form-control" ng-model="time">
+                    <select class="form-control input-sm" ng-model="time">
                         <option value='' disabled selected style='display:none;'>Time</option>
                         <option value="">None</option>
                         <option value="-date_posted">Oldest</option>
@@ -61,6 +61,8 @@
         </div>
     </div>
     <div class="row">
+        <div ng-show="!pageLoading" ><hr/></div>
+
         <!-- Loading Animation -->
         <div class="col-sm-2 col-sm-offset-5">
             <div class="spinner center-block" ng-show="pageLoading">
@@ -73,17 +75,20 @@
             <div class="content-panel bot15" ng-init="showResponses = false" ng-repeat="review in reviews | orderBy:time | orderBy:rating | filter:searchText:strict | filter:sectionfilter:strict">
                 <div class="panel-body">
                     <div class="col-sm-2">
-                        <i class=" fa  fa-user"></i>
-                        <div>
+                        <div class="col-sm-3">
+                            <i class="fa fa-user"></i>
+                        </div>
+                        <div class="col-sm-9">
                             <p><a href=""></a> {{review.user.user.username}}</p>
                             <p>{{review.date_posted | date: 'mediumDate'}}</p>
                             <p>{{review.date_posted | date: 'shortTime'}}</p>
+                            <button class = "btn btn-sm send-btn">
+                                <a href="mailto:{{review.user.user.email}}?Subject=Responding%20too%20your%20comment.">
+                                    <i class="fa fa-envelope"></i> EMAIL
+                                </a>
+                            </button>
                         </div>
-                        <button class = "btn btn-sm send-btn">
-                            <a href="mailto:{{review.user.user.email}}?Subject=Responding%20too%20your%20comment.">
-                                <i class="fa fa-envelope"></i> EMAIL
-                            </a>
-                        </button>
+
                     </div>
                     <div class = "col-sm-7">
                             <div class="row top5">
@@ -153,13 +158,16 @@
                                 <textarea rows="3" class="form-control"  autofocus placeholder="Comment" ng-model="ucomment"></textarea>
                             </div>
                         </div>
-                        <button class="btn btn-sm send-btn" ng-click="setResponse(uname, ucomment, review.id)">
+                        <button class="btn btn-sm send-btn pull-right" ng-click="setResponse(uname, ucomment, review.id)">
                             <i class="fa fa-share-square-o"></i> SUBMIT
                         </button>
                         <h4>{{response}}</h4>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="col-sm-12 top5 bot15" ng-show="!pageLoading">
+            <span class="text-center" ng-click="getNext()"><h5><i class="fa fa-angle-down"></i>LOAD MORE</h5></span>
         </div>
     </div>
 </div>

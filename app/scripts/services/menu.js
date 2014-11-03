@@ -31,12 +31,15 @@ angular.module('recommenuClientDashApp')
             userloc: function(user_location){
                 return Restangular.all(user_location).get();
             },
-
+m
             menuDetail: function(menuId){
                 return Restangular.one('api/v1/menus/' + menuId).get();
                 },
             sections: function(menuId){
                 return Restangular.one('api/v1/sections/?menu__company=' + $window.sessionStorage.company_id).getList();
+            },
+            getNext: function(nextUrl){
+                return Restangular.one(nextUrl).getList();
             },
             reviewDetail: function(entryId){
                 return Restangular.one('/api/v1/recommendations/?approved=1&entry=' + entryId).getList();
