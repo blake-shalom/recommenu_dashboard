@@ -17,6 +17,7 @@ angular.module('recommenuClientDashApp')
         $scope.responseSuccess = false;
         $scope.pageLoading = true;
 
+
         var getSections = function() {
             Menuservice.sections().then(
                 function (data) {

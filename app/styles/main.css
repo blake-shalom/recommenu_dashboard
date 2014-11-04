@@ -4881,3 +4881,60 @@ hr{
     color: #000;
     margin-bottom: 10%;
 }
+
+.Load-more{
+    width: 120px;
+    color: white;
+}
+
+.seeMore {
+    border: 1px solid;
+    width: 120px;
+    text-align: center;
+}
+
+.response .caption{
+    border: 1px solid;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #293336;
+    text-align: center;
+    /* visibility: hidden; */
+    opacity: 0;
+
+}
+.response:hover .caption{
+   /* visibility: visible; */
+    opacity: 1;
+}
+
+.question{
+    display: inline;
+    position: relative;
+}
+.question:hover:after{
+    background: #333;
+    background: rgba(0,0,0,.8);
+    border-radius: 5px;
+    bottom: 26px;
+    color: #fff;
+    content: attr(title);
+    left: 20%;
+    padding: 5px 15px;
+    position: absolute;
+    z-index: 98;
+    width: 220px;
+}
+
+.question:hover:before{
+    border: solid;
+    border-color: #333 transparent;
+    border-width: 6px 6px 0 6px;
+    bottom: 20px;
+    content: "";
+    left: 50%;
+    position: absolute;
+    z-index: 99;
+}
+        
+        
