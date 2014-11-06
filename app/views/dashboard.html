@@ -16,13 +16,17 @@
         <div class="navbar-collapse collapse">
 
             <ul class="nav navbar-nav navbar-right">
-                <li class="ng-class:onrev" ng-init="onrev='active'"><a   ng-click="onrev='active'; onana=''" href="#/dashboard/reviews">
+                <li class="ng-class:onrev" ><a   ng-click="onrev='active'; onana=''; onfut=''" href="#/dashboard/reviews">
                     <i class="fa fa-comments "></i>
                     REVIEW FEED
                 </a></li>
-                <li class="ng-class:onana" ><a  ng-click="onrev=''; onana='active'" href="#/dashboard/analytics">
+                <li class="ng-class:onana" ng-init="onana='active'"><a  ng-click="onrev=''; onana='active'; onfut=''" href="#/dashboard/analytics">
                     <i class="fa fa-area-chart"></i>
                     ANALYTICS
+                </a></li>
+                <li class="ng-class:onfut"><a  ng-click="onrev=''; onana=''; onfut='active'" href="#/dashboard/futures">
+                    <i class="fa fa-wrench"></i>
+                    FEEDBACK
                 </a></li>
                 <li>
                     <a href="" class="dropdown-toggle" data-toggle="dropdown">

@@ -12,6 +12,9 @@ angular.module('recommenuClientDashApp')
   .controller('AnalysisCtrl', function ($scope, Menuservice, twitter, $window) {
 
         $scope.pageLoading = true;
+        $scope.profileInfo['first_name'] = $window.sessionStorage.firstName;
+        $scope.profileInfo['last_name'] = $window.sessionStorage.lastName;
+        console.log($scope.profileInfo['first_name'], $scope.profileInfo['last_name']);
         $scope.reviews = {};
         $scope.donuts_data = {};
         Menuservice.menuList().then(

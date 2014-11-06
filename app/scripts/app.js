@@ -61,6 +61,11 @@ angular.module('recommenuClientDashApp', [
             url: '/analytics',
             templateUrl: 'views/analytics.html',
             controller: 'AnalysisCtrl'
+        })
+        .state('dashboard.futures', {
+            url: '/futures',
+            templateUrl: 'views/futures.html',
+            controller: 'Reviewsctrl'
         });
 
     $urlRouterProvider.otherwise('/login');

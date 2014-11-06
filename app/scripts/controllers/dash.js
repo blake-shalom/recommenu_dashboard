@@ -19,6 +19,20 @@ angular.module('recommenuClientDashApp')
                           'click the link, your registration will be complete!';
         $scope.content2 = 'If for some reason you don not recieve the email within 24 hours, contact us via ' +
                           'recommenu@gmail.com and we"ll do our best to get you back on track.';
+
+        Userservice.getManager().then(
+            function(data){
+                console.log(data.user.first_name);
+                $scope.managers = data;
+                $scope.managerName = data.user.first_name;
+                $scope.email = data.user.email;
+                //$scope.phoneNumber = data.user.first_name;
+            },
+            function(res){
+                console.log("failed user get", res.status);
+            }
+        );
+
         $scope.signIn = function(username, password) {
             // Check for missing credentials
             $scope.loginStatus = "Attempting to login...";
@@ -58,7 +72,7 @@ angular.module('recommenuClientDashApp')
                             function(res){
                                 console.log('failed profile get', res.status);
                             });
-                            $state.go('dashboard.Reviews');
+                            $state.go('dashboard.analytics');
                     },
                     function(res){
                         console.log('failed login', res.status);
@@ -71,13 +85,14 @@ angular.module('recommenuClientDashApp')
                 $scope.loginStatus = "Please enter login information.";
             }
         };
-
+/*
         $scope.getManager = function(){
-            console.log("actually fucking doing something");
+            console.log("actually is doing something");
             console.log($scope.showmanager);
             $scope.showmanager = true;
             console.log($scope.showmanager);
         };
+        */
 
         $scope.register = function(){
             console.log("registser");
