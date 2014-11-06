@@ -111,6 +111,7 @@ angular.module('recommenuClientDashApp')
             animation: false,
             pointDot : false,
             bezierCurve : false,
+            scaleBeginAtZero : true,
             datasetStrokeWidth : 5
         };
 
