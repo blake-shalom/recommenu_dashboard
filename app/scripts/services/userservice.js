@@ -9,16 +9,19 @@
  */
 angular.module('recommenuClientDashApp')
   .factory('Userservice', function Userservice($http, Restangular, $window) {
-    var userEndpoint = Restangular.all('/api-token-auth/');
+    var autEndpoint = Restangular.all('api-token-auth/');
       return {
         logIn: function(username, password) {
-                 return userEndpoint.post(JSON.stringify({username: username, password: password}));
+                 return autEndpoint.post(JSON.stringify({username: username, password: password}));
                },
+        getData: function(username, password) {
+                 return Restangular.one('/users/?username=' + username).get();
+               },  
         getInfo: function(){
-                   return  Restangular.one('/user_profile', $window.sessionStorage.id).get();
+                   return  Restangular.one('user_profile', $window.sessionStorage.id + '/').get();
                  },
         getManager: function(){
-                    return  Restangular.one('/user_profile/2/?format=json').get();
+                    return  Restangular.one('users/2/').get();
                  }
       };
   });

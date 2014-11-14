@@ -20,25 +20,26 @@ angular.module('recommenuClientDashApp')
         $scope.content2 = 'If for some reason you don not recieve the email within 24 hours, contact us via ' +
                           'recommenu@gmail.com and we"ll do our best to get you back on track.';
 
+/*
         Userservice.getManager().then(
-            function(data){
-                console.log(data.user.first_name);
-                $scope.managers = data;
-                $scope.managerName = data.user.first_name;
-                $scope.email = data.user.email;
+            function(user){
+                console.log(user.first_name);
+                $scope.managers = user;
+                $scope.managerName = user.first_name;
+                $scope.email = user.email;
                 //$scope.phoneNumber = data.user.first_name;
             },
             function(res){
                 console.log("failed user get", res.status);
             }
         );
-
+*/
         $scope.signIn = function(username, password) {
             // Check for missing credentials
             $scope.loginStatus = "Attempting to login...";
             console.log('Signing in as: ', username, password);
             if (username !== undefined && password !== undefined) {
-                Userservice.logIn(username, password).then(
+                Userservice.getData(username, password).then(
                     function(data){
                         console.log('successful login');
                         $scope.loginStatus = "You have successfully logged in!";
@@ -46,19 +47,18 @@ angular.module('recommenuClientDashApp')
                         Authenticationservice.isLogged = true;
                         $window.sessionStorage.token = data.apiKey;
                         $window.sessionStorage.id = data.id;
+                        $window.sessionStorage.firstName = data.first_name;
+                        $window.sessionStorage.lastName = data.last_name;
                         console.log("data.id: ",data.id);
-                        Restangular.setDefaultRequestParams({apiKey: $window.sessionStorage.token });
+                        //Restangular.setDefaultRequestParams({apiKey: $window.sessionStorage.token });
                         $location.path('/');  // default location after sign-in
                         Userservice.getInfo().then(
                             function(userInfo) {
                                 console.log('Successful profile get');
                                 console.log(userInfo.user);
 
-                                $scope.profileInfo['first_name'] = userInfo.user.first_name;
-                                console.log($scope.profileInfo['last_name']);
-                                $scope.profileInfo['last_name'] = userInfo.user.last_name;
                                 $window.sessionStorage.company_uri = userInfo.company;
-                                Restangular.one($window.sessionStorage.company_uri).get().then(
+                                Restangular.one('companies/' + $window.sessionStorage.id + '/').get().then(
                                     function(data){
                                         $window.sessionStorage.company_id = data.id;  // do this elsewhere eventually, set premptively
                                     },

@@ -10,7 +10,8 @@
 angular.module('recommenuClientDashApp')
   .factory('Menuservice', function (Restangular, $window, $http) {
         console.log($window.sessionStorage.company_uri);
-        var companyEndpoint = Restangular.one($window.sessionStorage.company_uri);
+        //var companyEndpoint = Restangular.one($window.sessionStorage.company_uri);
+        var companyEndpoint = Restangular.one('companies/' + $window.sessionStorage.id + '/');
 
         companyEndpoint.get().then(
             function(data){
@@ -22,26 +23,29 @@ angular.module('recommenuClientDashApp')
         );
         return {
             menuList: function(){
-                return Restangular.one('/menus/?company=' + $window.sessionStorage.company_id).getList();
+                return Restangular.one('/menus/?company=' + $window.sessionStorage.company_id).get();
             },
             review: function(){
                 //return Restangular.all('/api/v1/recommendations/?format=json').getList();
-                return Restangular.all('/recommendations/?approved=1&entry__section__menu__company=' + $window.sessionStorage.company_id).getList();
+                return Restangular.one('/recommendations/?approved=1&entry__section__menu__company=' + $window.sessionStorage.company_id).get();
             },
             userloc: function(user_location){
-                return Restangular.all(user_location).get();
+                return Restangular.one(user_location).get();
             },
             menuDetail: function(menuId){
                 return Restangular.one('/menus/' + menuId).get();
                 },
             sections: function(menuId){
-                return Restangular.one('/sections/?menu__company=' + $window.sessionStorage.company_id).getList();
+                console.log("sections");
+                return Restangular.one('/sections/?menu__company=' + $window.sessionStorage.company_id).get();
             },
             getNext: function(nextUrl){
+                console.log("next");
                 return Restangular.one(nextUrl).getList();
             },
             reviewDetail: function(entryId){
-                return Restangular.one('/recommendations/?approved=1&entry=' + entryId).getList();
+                console.log("reviewDetail");
+                return Restangular.one('/recommendations/?approved=1&entry=' + entryId).get();
             },
             brandResponse: function(name, commente, reviewid, date){
                 console.log('testing the menuservice');
@@ -63,7 +67,7 @@ angular.module('recommenuClientDashApp')
 
                 var call = $http({
                     method: 'POST',
-                    url: '/brand_responses/',
+                    url: 'http://recommenu-test-api.herokuapp.com/brand_responses/',
                     data:  /*JSON.stringify({company: "/api/v1/companies/1/", recommendation :"/api/v1/recommendations/1/", 
                         responder: name, date_posted :"2014-10-10T16:49:26.837659", 
                         comment: commente})

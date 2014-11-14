@@ -6,6 +6,11 @@
  * @description
  * # AnalysisCtrl
  * Controller of the recommenuClientDashApp
+ function generateData(){
+            for (review in scope.reviews){
+                tempDate = {{review.date_posted | date: 'mediumDate'}}
+            }
+        }
  */
 angular.module('recommenuClientDashApp')
 
@@ -18,10 +23,12 @@ angular.module('recommenuClientDashApp')
         $scope.reviews = {};
         $scope.donuts_data = {};
         Menuservice.menuList().then(
-            function(data){
+            function(info){
+                data = info.results;
                 console.log("menu List");
+                console.log(data);
                 $scope.menuList = data;
-                $scope.menuList_meta = data.metadata;
+                //$scope.menuList_meta = data.metadata;
                 console.log(data[0].sections[0].name);
                 for (var section in data[0].sections){
                     for (var entry in data[0].sections[section].entries){
@@ -85,6 +92,8 @@ angular.module('recommenuClientDashApp')
                 console.log("failed menulist get", res.status);
             }
         );
+
+
 
         function getRandomInt(min, max) {
             return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -166,7 +175,7 @@ angular.module('recommenuClientDashApp')
         $scope.showReviews = function(entryId){
             Menuservice.reviewDetail(entryId).then(
                 function(data){
-                    $scope.reviews[entryId] = data;
+                    $scope.reviews[entryId] = data.results;
                 },
                 function(res){
                     console.log(res);

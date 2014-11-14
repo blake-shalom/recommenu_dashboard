@@ -21,8 +21,8 @@ angular.module('recommenuClientDashApp')
         var getSections = function() {
             Menuservice.sections().then(
                 function (data) {
-                    $scope.sectionList = data;
-                    $scope.sections_meta = data.metadata;
+                    $scope.sectionList = data.results;
+                    //$scope.sections_meta = data.metadata;
 
                 },
                 function (res) {
@@ -35,8 +35,9 @@ angular.module('recommenuClientDashApp')
             Menuservice.getNext($scope.next).then(
                 function(data){
                     $scope.reviews.push(data);
-                    $scope.sections_meta = data.metadata;
-                    $scope.next = data.metadata.next;
+                    //$scope.sections_meta = data.metadata;
+                    //$scope.next = data.metadata.next;
+                    $scope.next = data.next;
                 },
                 function(res){
                     console.log("couldn't not get the next reviews", res.status);
@@ -47,10 +48,11 @@ angular.module('recommenuClientDashApp')
         };
         var getReviews = function(){
             Menuservice.review().then(
-            function(data){
+            function(info){
+                data = info.results;
                 $scope.reviews = data;
-                $scope.total_reviews = data.metadata.total_count;
-                $scope.next = data.metadata.next;
+                $scope.total_reviews = info.count;
+                $scope.next = info.next;
                 $scope.pageLoading = false;
 
             },

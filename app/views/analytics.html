@@ -57,7 +57,7 @@
                                             <div class="progress" ng-repeat="slider_template in entry.slider_templates">
                                                 <div class="progress-bar progress-bar-success" role="progressbar"
                                                      aria-valuenow="" aria-valuemin="0"
-                                                     aria-valuemax="100" style="width: {{slider_template.average_score}}%">
+                                                     aria-valuemax="100" style="width: {{slider_template.average_score}}0%">
                                                     {{slider_template.category}}
                                                 </div>
                                             </div>
@@ -84,7 +84,7 @@
                                                 <div class="col-sm-2">
                                                     <i class=" fa  fa-user"></i>
                                                     <div>
-                                                        <p><a href=""></a> {{review.user.user.username}}</p>
+                                                        <p><a href=""></a> {{review.username}}</p>
                                                         <p>{{review.date_posted | date: 'mediumDate'}}</p>
                                                         <p>{{review.date_posted | date: 'shortTime'}}</p>
                                                     </div>
@@ -97,7 +97,7 @@
                                                 <div class = "col-sm-7">
                                                     <div class="row top5">
                                                         <div class="col-sm-3"><b>Meal:</b></div>
-                                                        <div class="col-sm-9">{{review.entry.name}}</div>
+                                                        <div class="col-sm-9">{{review.entry_name}}</div>
                                                     </div>
                                                     <div class="row top5">
                                                         <div class="col-sm-3"><b>Title: </b></div>
@@ -122,10 +122,10 @@
                                                         <div class="col-sm-3"><b>Quality: </b></div>
                                                         <div class="col-sm-9">
                                                             <div class="showback">
-                                                                <div class="progress" ng-repeat="slider_template in review.entry.slider_templates">
+                                                                <div class="progress" ng-repeat="slider_template in review.sliders">
                                                                     <div class="progress-bar progress-bar-success" role="progressbar"
                                                                          aria-valuenow="" aria-valuemin="0"
-                                                                         aria-valuemax="100" style="width: {{slider_template.average_score}}%">
+                                                                         aria-valuemax="100" style="width: {{slider_template.score}}0%">
                                                                         {{slider_template.category}}
                                                                     </div>
                                                                 </div>

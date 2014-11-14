@@ -22,47 +22,54 @@ angular.module('recommenuClientDashApp')
             console.log('Signing in as: ', username, password);
             if (username !== undefined && password !== undefined) {
                 Userservice.logIn(username, password).then(
-                    function(data){
-                        console.log('successful login');
-                        $scope.loginStatus = "You have successfully logged in!";
-                        $scope.loginSuccess = "Log Out";
-                        Authenticationservice.isLogged = true;
-                        $window.sessionStorage.token = data.apiKey;
-                        $window.sessionStorage.id = data.id;
-                        console.log("data.id: ",data.id);
-                        //Restangular.setDefaultRequestParams({apiKey: $window.sessionStorage.token });
-                        $location.path('/');  // default location after sign-in
-                        Userservice.getInfo().then(
-                            function(userInfo) {
-                                console.log('Successful profile get');
-                                console.log(userInfo.user);
-                                $window.sessionStorage.firstName = userInfo.user.first_name;
-                                $window.sessionStorage.lastName = userInfo.user.last_name;
-                                $window.sessionStorage.company_uri = userInfo.company;
-                                Restangular.one($window.sessionStorage.company_uri).get().then(
-                                    function(data){
-                                        $window.sessionStorage.company_id = data.id;  // do this elsewhere eventually, set premptively
-                                        console.log($window.sessionStorage.company_uri);
-                                        console.log($scope.profileInfo['first_name']);
-                                        $state.go('dashboard.analytics');
+                    function(auth){
+                        Restangular.setDefaultHeaders({'content-type': 'application/json', 'Authorization': 'Token '+ auth.token});
+                        Userservice.getData(username, password).then(
+                            function(data){
+                                data = data.results[0];
+                                console.log("data: ",data);
+                                console.log('successful login');
+                                $scope.loginStatus = "You have successfully logged in!";
+                                $scope.loginSuccess = "Log Out";
+                                Authenticationservice.isLogged = true;
+                                $window.sessionStorage.token = data.apiKey;
+                                $window.sessionStorage.id = data.id;
+                                $window.sessionStorage.firstName = data.first_name;
+                                $window.sessionStorage.lastName = data.last_name;
+                                console.log("data.id: ",data.id);
+                                //Restangular.setDefaultRequestParams({apiKey: $window.sessionStorage.token });
+                                $location.path('/');  // default location after sign-in
+                                Userservice.getInfo().then(
+                                    function(userInfo) {
+                                        console.log('Successful profile get');
+                                        $window.sessionStorage.company_uri = userInfo.company;
+                                        Restangular.one('companies/' + $window.sessionStorage.id + '/').get().then(
+                                            function(data1){
+                                                $window.sessionStorage.company_id = data1.id;  // do this elsewhere eventually, set premptively
+                                                console.log($window.sessionStorage.company_uri);
+                                                $state.go('dashboard.analytics');
+                                            },
+                                            function(res){
+                                                console.log('Could not reach company detail endpoint');
+                                            }
+                                        );
+
                                     },
-                                    function(res){
-                                        console.log('Could not reach company detail endpoint');
-                                    }
-                                );
-
-                            },
-                            function(res){
-                                console.log('failed profile get', res.status);
-                            });
+                                function(res){
+                                    console.log('failed profile get', res.status);
+                                });
 
 
+                        },
+                        function(res){
+                                    console.log('failed profile get', res.status);
+                                });
                     },
-                    function(res){
-                        console.log('failed login', res.status);
-                        $scope.loginStatus = "Login Failed.";
+                        function(res){
+                            console.log('failed login', res.status);
+                            $scope.loginStatus = "Login Failed.";
 
-                    }
+                        }
                 );
             }
             else{
