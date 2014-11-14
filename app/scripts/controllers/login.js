@@ -42,14 +42,14 @@ angular.module('recommenuClientDashApp')
                                 Restangular.one($window.sessionStorage.company_uri).get().then(
                                     function(data){
                                         $window.sessionStorage.company_id = data.id;  // do this elsewhere eventually, set premptively
+                                        console.log($window.sessionStorage.company_uri);
+                                        console.log($scope.profileInfo['first_name']);
+                                        $state.go('dashboard.analytics');
                                     },
                                     function(res){
                                         console.log('Could not reach company detail endpoint');
                                     }
                                 );
-                                console.log($window.sessionStorage.company_uri);
-                                console.log($scope.profileInfo['first_name']);
-                                $state.go('dashboard.analytics');
 
                             },
                             function(res){

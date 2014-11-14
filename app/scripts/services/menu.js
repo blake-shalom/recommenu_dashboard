@@ -22,26 +22,26 @@ angular.module('recommenuClientDashApp')
         );
         return {
             menuList: function(){
-                return Restangular.one('api/v1/menus/?company=' + $window.sessionStorage.company_id).getList();
+                return Restangular.one('/menus/?company=' + $window.sessionStorage.company_id).getList();
             },
             review: function(){
                 //return Restangular.all('/api/v1/recommendations/?format=json').getList();
-                return Restangular.all('/api/v1/recommendations/?approved=1&entry__section__menu__company=' + $window.sessionStorage.company_id).getList();
+                return Restangular.all('/recommendations/?approved=1&entry__section__menu__company=' + $window.sessionStorage.company_id).getList();
             },
             userloc: function(user_location){
                 return Restangular.all(user_location).get();
             },
             menuDetail: function(menuId){
-                return Restangular.one('api/v1/menus/' + menuId).get();
+                return Restangular.one('/menus/' + menuId).get();
                 },
             sections: function(menuId){
-                return Restangular.one('api/v1/sections/?menu__company=' + $window.sessionStorage.company_id).getList();
+                return Restangular.one('/sections/?menu__company=' + $window.sessionStorage.company_id).getList();
             },
             getNext: function(nextUrl){
                 return Restangular.one(nextUrl).getList();
             },
             reviewDetail: function(entryId){
-                return Restangular.one('/api/v1/recommendations/?approved=1&entry=' + entryId).getList();
+                return Restangular.one('/recommendations/?approved=1&entry=' + entryId).getList();
             },
             brandResponse: function(name, commente, reviewid, date){
                 console.log('testing the menuservice');
@@ -50,12 +50,12 @@ angular.module('recommenuClientDashApp')
                 //return Restangular.all('api/v1/brand_responses').post(s);
                 
                 //create recommendation uri
-                var recom = "/api/v1/recommendations/";
+                var recom = "/recommendations/";
                 var recomF = recom.concat(reviewid);
                 recomF = recomF.concat("/");
                 console.log("recomF: ", recomF);
  
-                var companyF = "/api/v1/companies/1/";
+                var companyF = "/companies/1/";
 
                 var payload = JSON.stringify({company: companyF, recommendation: recomF, responder:name, date_posted:date, comment:commente});
                 console.log(payload);
@@ -63,7 +63,7 @@ angular.module('recommenuClientDashApp')
 
                 var call = $http({
                     method: 'POST',
-                    url: 'http://tranquil-plateau-8131.herokuapp.com/api/v1/brand_responses/',
+                    url: '/brand_responses/',
                     data:  /*JSON.stringify({company: "/api/v1/companies/1/", recommendation :"/api/v1/recommendations/1/", 
                         responder: name, date_posted :"2014-10-10T16:49:26.837659", 
                         comment: commente})

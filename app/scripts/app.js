@@ -21,7 +21,7 @@ angular.module('recommenuClientDashApp', [
     $httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
     $httpProvider.defaults.headers.common['Content-Type'];
-    RestangularProvider.setBaseUrl('http://tranquil-plateau-8131.herokuapp.com');
+    RestangularProvider.setBaseUrl('http://recommenu-test-api.herokuapp.com');
 
     //$httpProvider.interceptors.push('TokenInterceptor');
     RestangularProvider.configuration.requestSuffix = '&';
