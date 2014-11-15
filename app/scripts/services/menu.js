@@ -84,6 +84,42 @@ angular.module('recommenuClientDashApp')
 
                 });
                 return call;    
+            },
+
+            futuresPost: function(commente,date){
+                console.log('testing the menuservice');
+                console.log("here: ", commente," : ", date);
+                //var s = JSON.stringify({responder: name, comment: comment});
+                //return Restangular.all('api/v1/brand_responses').post(s);
+                
+                
+                
+ 
+                var companyF = "/companies/1/";
+
+                var payload = JSON.stringify({company: companyF, comment:commente, date_posted:date});
+                console.log(payload);
+
+
+                var call = $http({
+                    method: 'POST',
+                    url: 'http://recommenu-test-api.herokuapp.com/feedback/',
+                    data:  /*JSON.stringify({company: "/api/v1/companies/1/", recommendation :"/api/v1/recommendations/1/", 
+                        responder: name, date_posted :"2014-10-10T16:49:26.837659", 
+                        comment: commente})
+                    */
+                    // {"company": "/api/v1/companies/1/", "recommendation":"/api/v1/recommendations/19/", "responder":"Bob's American Grille", "date_posted":"2014-10-10T16:49:46.837659", "comment":"Freddie, that sounds like a great strategy! Glad you enjoyed the dish!"}
+                    payload
+                })
+                call.success(function (data, status, headers, config) {
+                    console.log("feedback: success");
+
+                })
+                call.error(function (data, status, headers, config){
+                    console.log('feedback: error');
+
+                });
+                return call;    
             }
 
                 }

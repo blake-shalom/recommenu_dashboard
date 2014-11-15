@@ -145,6 +145,7 @@ angular.module('recommenuClientDashApp')
 
 
         $scope.passReivewID = function(x){
+            console.log("here:" + x);
             $scope.clickedit = true;
             $scope.reviewIDPassed = x;
 
@@ -193,6 +194,44 @@ angular.module('recommenuClientDashApp')
                 function(res){
                     console.log("Could not retrieve reviews", res.status);
                     $scope.responseMessage = "Sorry, your response was unsuccessfully! "+res.status;
+                });
+                
+
+                $scope.uname = "";
+                $scope.ucomment = "";
+            }
+
+            
+        }
+
+        $scope.futuresComment = function(comment){
+
+            
+            if(!comment){
+                $scope.response = "Please fill out the comment.";  
+            }   
+
+            //user filled out the form
+            else{
+                $scope.clickedit = false;
+                console.log("setrespone: ",comment);
+                var d = new Date();
+                var date = d.toISOString();
+
+                $('.overlay-bg2').hide();
+
+                
+                Menuservice.futuresPost(comment, date).then(
+                function(data){
+                    console.log("setResponse: Success!");
+                    $scope.responseSuccess = true;
+                    $scope.responseMessage = "Your response was sent successfully!";
+                    console.log("Reloading Reviews");
+                    console.log(comment);
+                },
+                function(res){
+                    console.log("Could not retrieve reviews", res.status);
+                    $scope.responseMessage = "Sorry, your response was unsuccessfully! "+ res.status;
                 });
                 
 
