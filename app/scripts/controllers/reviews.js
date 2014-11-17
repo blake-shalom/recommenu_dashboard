@@ -159,6 +159,12 @@ angular.module('recommenuClientDashApp')
 
         };
 
+        $scope.deleteResponse = function(review){
+            var response = review.brand_responses[0].url
+            var temp = response.replace("http://recommenu-test-api.herokuapp.com", "");
+            Menuservice.deleteResponse(temp);
+        }
+
         $scope.setResponse = function(name, comment, reviewid, review){
 
             //error checking
@@ -175,9 +181,11 @@ angular.module('recommenuClientDashApp')
 
             //user filled out the form
             else{
+                if (review.brand_response != undefined){
                 var response = review.brand_responses[0].url
                 var temp = response.replace("http://recommenu-test-api.herokuapp.com", "");
                 Menuservice.deleteResponse(temp);
+            }
                 $scope.clickedit = false;
                 console.log("setrespone: ", name , " : ", comment, " : ", reviewid);
                 var d = new Date();
