@@ -28,10 +28,16 @@ angular.module('recommenuClientDashApp')
                 console.log("menu List");
                 console.log(data);
                 $scope.menuList = data;
+                var today = new Date();
+                console.log(today);
+                console.log("month = " + today.getMonth());
+                var count = [0,0,0,0,0,0,0];
+                console.log(count[0]);
                 //$scope.menuList_meta = data.metadata;
                 console.log(data[0].sections[0].name);
                 for (var section in data[0].sections){
                     for (var entry in data[0].sections[section].entries){
+                        //console.log(data[0].sections[section].entries[entry].id);
                         $scope.menuList[0].sections[section].entries[entry]['donut'] = [
                             {
                                 value: $scope.menuList[0].sections[section].entries[entry]['five_agg'],
@@ -64,6 +70,8 @@ angular.module('recommenuClientDashApp')
                                 label: "One Star"
                             }
                         ]
+
+                        count = [0,0,0,0,0,0,0];
 
                         $scope.menuList[0].sections[section].entries[entry]['chart'] = {
                             labels: ["Day 1", "Day 5", "Day 10", "Day 15", "Day 20", "Day 25", "Day 30"],
