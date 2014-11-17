@@ -156,10 +156,10 @@
                         </div>
                         <div class="form-group">
                             <div class="">
-                                <textarea rows="3" class="form-control"  autofocus placeholder="Comment" ng-model="ucomment"></textarea>
+                                <textarea rows="3" class="form-control"  autofocus placeholder= "{{review.brand_responses[0].comment}}" ng-model="ucomment"></textarea>
                             </div>
                         </div>
-                        <button class="btn btn-sm send-btn pull-right" ng-click="setResponse(uname, ucomment, review.id)">
+                        <button class="btn btn-sm send-btn pull-right" ng-click="setResponse(uname, ucomment, review.id, review)">
                             <i class="fa fa-share-square-o"></i> SUBMIT
                         </button>
                         <h4>{{response}}</h4>

@@ -159,7 +159,7 @@ angular.module('recommenuClientDashApp')
 
         };
 
-        $scope.setResponse = function(name, comment, reviewid){
+        $scope.setResponse = function(name, comment, reviewid, review){
 
             //error checking
             if(!name && !comment){
@@ -175,6 +175,9 @@ angular.module('recommenuClientDashApp')
 
             //user filled out the form
             else{
+                var response = review.brand_responses[0].url
+                var temp = response.replace("http://recommenu-test-api.herokuapp.com", "");
+                Menuservice.deleteResponse(temp);
                 $scope.clickedit = false;
                 console.log("setrespone: ", name , " : ", comment, " : ", reviewid);
                 var d = new Date();

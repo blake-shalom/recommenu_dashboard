@@ -47,6 +47,9 @@ angular.module('recommenuClientDashApp')
                 console.log("reviewDetail");
                 return Restangular.one('/recommendations/?approved=1&entry=' + entryId).get();
             },
+            deleteResponse: function(url){
+                Restangular.one(url).delete();
+            },
             brandResponse: function(name, commente, reviewid, date){
                 console.log('testing the menuservice');
                 console.log("here: ",name," : ", commente," : ", reviewid," : ", date);
