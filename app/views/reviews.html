@@ -47,8 +47,9 @@
                 SORT BY:
                 <div class="form-group">
                     <select class="form-control input-sm" ng-model="time">
-                        <option value='' disabled selected style='display:none;'>Time</option>
+                        <option value='' disabled selected style='display:none;'>None</option>
                         <option value="">None</option>
+                        <option value="date_posted">Most Recent</option>
                         <option value="-date_posted">Oldest</option>
                         <option value="-stars">Highest Rated</option>
                         <option value="stars">Lowest Rated</option>
@@ -79,7 +80,7 @@
                             <i class="fa fa-user"></i>
                         </div>
                         <div class="col-sm-9">
-                            <p><a href=""></a> {{review.user.user.username}}</p>
+                            <p><a href=""></a> {{review.username}}</p>
                             <p>{{review.date_posted | date: 'mediumDate'}}</p>
                             <p>{{review.date_posted | date: 'shortTime'}}</p>
                             <button class = "btn btn-sm send-btn">
@@ -93,7 +94,7 @@
                     <div class = "col-sm-7">
                             <div class="row top5">
                                 <div class="col-sm-3"><b>Meal:</b></div>
-                                <div class="col-sm-9">{{review.entry.name}}</div>
+                                <div class="col-sm-9">{{review.entry_name}}</div>
                             </div>
                             <div class="row top5">
                                 <div class="col-sm-3"><b>Title: </b></div>
@@ -118,17 +119,18 @@
                             <div class="col-sm-3"><b>Quality: </b></div>
                             <div class="col-sm-9">
                                 <div class="showback">
-                                    <div class="progress" ng-repeat="slider_template in review.entry.slider_templates">
+                                    <div class="progress" ng-repeat="slider_template in review.sliders">
                                         <div class="progress-bar progress-bar-success" role="progressbar"
                                              aria-valuenow="" aria-valuemin="0"
-                                             aria-valuemax="100" style="width: {{slider_template.average_score}}%">
+                                             aria-valuemax="100" style="width: {{slider_template.score}}0%">
                                             {{slider_template.category}}
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- brand responses -->
+                        
+                        <!-- brand responses 
                         <h5 class="pull-left">
                             <a ng-click=" showResponses = !showResponses" ng-show="showResponses == true" class="pull-right">
                                 <i class="fa fa-arrow-right"></i><b> Hide Responses:</b>
@@ -144,10 +146,10 @@
                                     <h6>{{ru.responder}}</h6>
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
                     </div>
                     <div class="col-sm-3">
-                        Reply <i class="fa fa-question-circle"></i>
+                        Reply <i title = "Add a visible response on your online menus to the user's comment." class="question "><span title="More" class = "fa fa-question-circle"></span></i>
                         <div class="form-group">
                             <div class="">
                                 <input type="text" class="form-control"  autofocus placeholder="Name" ng-model="uname">
@@ -155,10 +157,10 @@
                         </div>
                         <div class="form-group">
                             <div class="">
-                                <textarea rows="3" class="form-control"  autofocus placeholder="Comment" ng-model="ucomment"></textarea>
+                                <textarea rows="3" class="form-control"  autofocus placeholder= "{{review.brand_responses[0].comment}}" ng-model="ucomment"></textarea>
                             </div>
                         </div>
-                        <button class="btn btn-sm send-btn pull-right" ng-click="setResponse(uname, ucomment, review.id)">
+                        <button class="btn btn-sm send-btn pull-right" ng-click="setResponse(uname, ucomment, review.id, review)">
                             <i class="fa fa-share-square-o"></i> SUBMIT
                         </button>
                         <h4>{{response}}</h4>
@@ -167,7 +169,7 @@
             </div>
         </div>
         <div class="col-sm-12 top5 bot15" ng-show="!pageLoading">
-            <span class="text-center" ng-click="getNext()"><h5><i class="fa fa-angle-down"></i>LOAD MORE</h5></span>
+            <span class="text-center" ng-click="getNext()"><h5><p class = "btn btn-sm send-btn Load-more"><i class="fa fa-angle-down"></i>LOAD MORE</p></h5></span>
         </div>
     </div>
 </div>

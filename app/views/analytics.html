@@ -57,23 +57,24 @@
                                             <div class="progress" ng-repeat="slider_template in entry.slider_templates">
                                                 <div class="progress-bar progress-bar-success" role="progressbar"
                                                      aria-valuenow="" aria-valuemin="0"
-                                                     aria-valuemax="100" style="width: {{slider_template.average_score}}%">
+                                                     aria-valuemax="100" style="width: {{slider_template.average_score}}0%">
                                                     {{slider_template.category}}
                                                 </div>
                                             </div>
                                         </div><!--/showback -->
                                     </div>
                                 </div>
+                                <!--
                                 <div class="col-sm-6">
                                     <div class="col-sm-12">
                                         <h5><b>NUMBER OF REVIEWS</b></h5>
                                         <canvas linechart  options="lineOptions" data="entry.chart" width="500" height="400"></canvas>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="col-sm-12">
                                     <span class="pull-right" ng-click="showReviews(entry.id); show = !show">
-                                        <h5 ng-show="!show">SEE REVIEWS <i class="fa fa-plus-square"></i></h5>
-                                        <h5 ng-show="show">HIDE REVIEWS <i class="fa fa-minus-square"></i></h5>
+                                        <h5 class = "btn btn-sm send-btn seeMore" ng-show="!show">SEE REVIEWS <i class="fa fa-plus-square"></i></h5>
+                                        <h5 class = "btn btn-sm send-btn seeMore" ng-show="show">HIDE REVIEWS <i class="fa fa-minus-square"></i></h5>
                                     </span>
                                 </div>
                                 <div class="col-sm-10 col-sm-offset-1 ">
@@ -84,7 +85,7 @@
                                                 <div class="col-sm-2">
                                                     <i class=" fa  fa-user"></i>
                                                     <div>
-                                                        <p><a href=""></a> {{review.user.user.username}}</p>
+                                                        <p><a href=""></a> {{review.username}}</p>
                                                         <p>{{review.date_posted | date: 'mediumDate'}}</p>
                                                         <p>{{review.date_posted | date: 'shortTime'}}</p>
                                                     </div>
@@ -97,7 +98,7 @@
                                                 <div class = "col-sm-7">
                                                     <div class="row top5">
                                                         <div class="col-sm-3"><b>Meal:</b></div>
-                                                        <div class="col-sm-9">{{review.entry.name}}</div>
+                                                        <div class="col-sm-9">{{review.entry_name}}</div>
                                                     </div>
                                                     <div class="row top5">
                                                         <div class="col-sm-3"><b>Title: </b></div>
@@ -122,10 +123,10 @@
                                                         <div class="col-sm-3"><b>Quality: </b></div>
                                                         <div class="col-sm-9">
                                                             <div class="showback">
-                                                                <div class="progress" ng-repeat="slider_template in review.entry.slider_templates">
+                                                                <div class="progress" ng-repeat="slider_template in review.sliders">
                                                                     <div class="progress-bar progress-bar-success" role="progressbar"
                                                                          aria-valuenow="" aria-valuemin="0"
-                                                                         aria-valuemax="100" style="width: {{slider_template.average_score}}%">
+                                                                         aria-valuemax="100" style="width: {{slider_template.score}}0%">
                                                                         {{slider_template.category}}
                                                                     </div>
                                                                 </div>
@@ -151,7 +152,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-3">
-                                                    Reply <i class="fa fa-question-circle"></i>
+                                                    Reply <i title = "Add a visible response on your online menus to the user's comment." class="question "><span title="More" class = "fa fa-question-circle"></span></i>
                                                     <div class="form-group">
                                                         <div class="">
                                                             <input type="text" class="form-control"  autofocus placeholder="Name" ng-model="uname">

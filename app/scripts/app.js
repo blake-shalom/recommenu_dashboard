@@ -21,20 +21,20 @@ angular.module('recommenuClientDashApp', [
     $httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
     $httpProvider.defaults.headers.common['Content-Type'];
-    RestangularProvider.setBaseUrl('http://tranquil-plateau-8131.herokuapp.com');
+    RestangularProvider.setBaseUrl('http://recommenu-test-api.herokuapp.com');
 
     //$httpProvider.interceptors.push('TokenInterceptor');
     RestangularProvider.configuration.requestSuffix = '&';
-    RestangularProvider.setResponseExtractor(function(response, operation) {
+    /*RestangularProvider.setResponseExtractor(function(response, operation) {
         var newResponse;
         if (operation === 'getList') {
             newResponse = response.objects;
-            newResponse.metadata = response.meta;
+            //newResponse.metadata = response.meta;
         } else {
             newResponse = response;
         }
         return newResponse;
-    });
+    });*/
 
     $stateProvider
         /* Navigation and states for dashboard screens*/
@@ -61,6 +61,11 @@ angular.module('recommenuClientDashApp', [
             url: '/analytics',
             templateUrl: 'views/analytics.html',
             controller: 'AnalysisCtrl'
+        })
+        .state('dashboard.futures', {
+            url: '/futures',
+            templateUrl: 'views/futures.html',
+            controller: 'Reviewsctrl'
         });
 
     $urlRouterProvider.otherwise('/login');

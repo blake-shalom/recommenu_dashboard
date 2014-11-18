@@ -6,22 +6,38 @@
  * @description
  * # AnalysisCtrl
  * Controller of the recommenuClientDashApp
+ function generateData(){
+            for (review in scope.reviews){
+                tempDate = {{review.date_posted | date: 'mediumDate'}}
+            }
+        }
  */
 angular.module('recommenuClientDashApp')
 
   .controller('AnalysisCtrl', function ($scope, Menuservice, twitter, $window) {
 
         $scope.pageLoading = true;
+        $scope.profileInfo['first_name'] = $window.sessionStorage.firstName;
+        $scope.profileInfo['last_name'] = $window.sessionStorage.lastName;
+        console.log($scope.profileInfo['first_name'], $scope.profileInfo['last_name']);
         $scope.reviews = {};
         $scope.donuts_data = {};
         Menuservice.menuList().then(
-            function(data){
+            function(info){
+                data = info.results;
                 console.log("menu List");
+                console.log(data);
                 $scope.menuList = data;
-                $scope.menuList_meta = data.metadata;
+                var today = new Date();
+                console.log(today);
+                console.log("month = " + today.getMonth());
+                var count = [0,0,0,0,0,0,0];
+                console.log(count[0]);
+                //$scope.menuList_meta = data.metadata;
                 console.log(data[0].sections[0].name);
                 for (var section in data[0].sections){
                     for (var entry in data[0].sections[section].entries){
+                        //console.log(data[0].sections[section].entries[entry].id);
                         $scope.menuList[0].sections[section].entries[entry]['donut'] = [
                             {
                                 value: $scope.menuList[0].sections[section].entries[entry]['five_agg'],
@@ -55,6 +71,8 @@ angular.module('recommenuClientDashApp')
                             }
                         ]
 
+                        count = [0,0,0,0,0,0,0];
+
                         $scope.menuList[0].sections[section].entries[entry]['chart'] = {
                             labels: ["Day 1", "Day 5", "Day 10", "Day 15", "Day 20", "Day 25", "Day 30"],
                             datasets: [
@@ -83,6 +101,8 @@ angular.module('recommenuClientDashApp')
             }
         );
 
+
+
         function getRandomInt(min, max) {
             return Math.floor(Math.random() * (max - min + 1)) + min;
         }
@@ -108,6 +128,7 @@ angular.module('recommenuClientDashApp')
             animation: false,
             pointDot : false,
             bezierCurve : false,
+            scaleBeginAtZero : true,
             datasetStrokeWidth : 5
         };
 
@@ -162,7 +183,7 @@ angular.module('recommenuClientDashApp')
         $scope.showReviews = function(entryId){
             Menuservice.reviewDetail(entryId).then(
                 function(data){
-                    $scope.reviews[entryId] = data;
+                    $scope.reviews[entryId] = data.results;
                 },
                 function(res){
                     console.log(res);

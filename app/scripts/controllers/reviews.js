@@ -17,11 +17,12 @@ angular.module('recommenuClientDashApp')
         $scope.responseSuccess = false;
         $scope.pageLoading = true;
 
+
         var getSections = function() {
             Menuservice.sections().then(
                 function (data) {
-                    $scope.sectionList = data;
-                    $scope.sections_meta = data.metadata;
+                    $scope.sectionList = data.results;
+                    //$scope.sections_meta = data.metadata;
 
                 },
                 function (res) {
@@ -34,8 +35,9 @@ angular.module('recommenuClientDashApp')
             Menuservice.getNext($scope.next).then(
                 function(data){
                     $scope.reviews.push(data);
-                    $scope.sections_meta = data.metadata;
-                    $scope.next = data.metadata.next;
+                    //$scope.sections_meta = data.metadata;
+                    //$scope.next = data.metadata.next;
+                    $scope.next = data.next;
                 },
                 function(res){
                     console.log("couldn't not get the next reviews", res.status);
@@ -46,10 +48,11 @@ angular.module('recommenuClientDashApp')
         };
         var getReviews = function(){
             Menuservice.review().then(
-            function(data){
+            function(info){
+                data = info.results;
                 $scope.reviews = data;
-                $scope.total_reviews = data.metadata.total_count;
-                $scope.next = data.metadata.next;
+                $scope.total_reviews = info.count;
+                $scope.next = info.next;
                 $scope.pageLoading = false;
 
             },
@@ -142,6 +145,7 @@ angular.module('recommenuClientDashApp')
 
 
         $scope.passReivewID = function(x){
+            console.log("here:" + x);
             $scope.clickedit = true;
             $scope.reviewIDPassed = x;
 
@@ -155,7 +159,13 @@ angular.module('recommenuClientDashApp')
 
         };
 
-        $scope.setResponse = function(name, comment, reviewid){
+        $scope.deleteResponse = function(review){
+            var response = review.brand_responses[0].url
+            var temp = response.replace("http://recommenu-test-api.herokuapp.com", "");
+            Menuservice.deleteResponse(temp);
+        }
+
+        $scope.setResponse = function(name, comment, reviewid, review){
 
             //error checking
             if(!name && !comment){
@@ -171,6 +181,11 @@ angular.module('recommenuClientDashApp')
 
             //user filled out the form
             else{
+                if (review.brand_response != undefined){
+                var response = review.brand_responses[0].url
+                var temp = response.replace("http://recommenu-test-api.herokuapp.com", "");
+                Menuservice.deleteResponse(temp);
+            }
                 $scope.clickedit = false;
                 console.log("setrespone: ", name , " : ", comment, " : ", reviewid);
                 var d = new Date();
@@ -190,6 +205,44 @@ angular.module('recommenuClientDashApp')
                 function(res){
                     console.log("Could not retrieve reviews", res.status);
                     $scope.responseMessage = "Sorry, your response was unsuccessfully! "+res.status;
+                });
+                
+
+                $scope.uname = "";
+                $scope.ucomment = "";
+            }
+
+            
+        }
+
+        $scope.futuresComment = function(comment){
+
+            
+            if(!comment){
+                $scope.response = "Please fill out the comment.";  
+            }   
+
+            //user filled out the form
+            else{
+                $scope.clickedit = false;
+                console.log("setrespone: ",comment);
+                var d = new Date();
+                var date = d.toISOString();
+
+                $('.overlay-bg2').hide();
+
+                
+                Menuservice.futuresPost(comment, date).then(
+                function(data){
+                    console.log("setResponse: Success!");
+                    $scope.responseSuccess = true;
+                    $scope.responseMessage = "Your response was sent successfully!";
+                    console.log("Reloading Reviews");
+                    console.log(comment);
+                },
+                function(res){
+                    console.log("Could not retrieve reviews", res.status);
+                    $scope.responseMessage = "Sorry, your response was unsuccessfully! "+ res.status;
                 });
                 
 

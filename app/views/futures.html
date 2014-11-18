@@ -1,0 +1,21 @@
+<div>
+        <div ng-show="!pageLoading" ><hr/></div>
+        <div class = "futures">
+            <div class= "futures_text"> How Can We Make Recommenu Better? </div>
+            <textarea rows="5" class="form-control_fut" ng-model="ucomment"></textarea>
+            <button class="btn btn-sm fut-btn" ng-click="futuresComment(ucomment)">
+                            <i class="fa fa-share-square-o"></i> SUBMIT
+                        </button>
+        </div>
+
+        <!-- Loading Animation -->
+        <div class="col-sm-2 col-sm-offset-5">
+            <div class="spinner center-block" ng-show="pageLoading">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+            </div>
+        </div>
+        
+</div>
+
